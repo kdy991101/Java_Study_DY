@@ -18,6 +18,7 @@ public class BankBookDAO implements BookDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.start.bankBook.BankBookDAO.";
+	//연결할 dao의 풀패키지명.클래스명
 
 	public int setBankbook(BankBookDTO bankBookDTO) throws Exception {
 		Calendar ca = Calendar.getInstance();

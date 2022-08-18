@@ -29,11 +29,8 @@ public class BankMembersDAOTest {
 	
 	@Test
 	public void getSearch()throws Exception{
-		
-		List<Object> ar = bankMembersDAO.getSearchByID(null);
-		
-		assertNotEquals(0, ar.size());
+	
 	}
 }
 
-}
+
