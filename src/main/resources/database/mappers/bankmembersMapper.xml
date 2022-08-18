@@ -6,16 +6,16 @@
     
 <mapper namespace="com.iu.start.bankMembers.BankMembersDAO">
 
-<select id="getlogin" parameterType="com.iu.start.bankMembers.BankMembersDTO" resultType="com.iu.start.bankMembers.BankMembersDTO">
+<select id="getlogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
 SELECT USERNAME, NAME FROM MEMBERS WHERE USERNAME=#{username} AND PASSWORD=#{password}
 </select>
 
-<insert id="setJoin" parameterType="com.iu.start.bankMembers.BankMembersDTO">
+<insert id="setJoin" parameterType="BankMembersDTO">
 INSERT INTO MEMBERS VALUES(#{username},#{password},#{name},#{email},#{phone})
 </insert>
 
-<select id="getSearchByID" parameterType="java.lang.String" 
-								resultType="com.iu.start.bankMembers.BankMembersDTO">
+<select id="getSearchByID" parameterType="String" 
+								resultType="BankMembersDTO">
 SELECT * FROM MEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME ASC
 </select>
 
