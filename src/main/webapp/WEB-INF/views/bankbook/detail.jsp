@@ -40,6 +40,7 @@
 			<td>${detail.bookNum}</td>
 			<td>${detail.bookName}</td>
 			<td>${detail.bookRate}</td>
+			<td>${detail.bookSale}</td>
 		</tr>
 	</tbody>
 </table>
