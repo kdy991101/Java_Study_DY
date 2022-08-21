@@ -24,9 +24,8 @@ public class BankMembersController {
 	}
 	
 	@RequestMapping(value="login.iu", method=RequestMethod.POST)
-	public String login(HttpServletRequest request, BankMembersDTO bankMembersDTO) throws Exception{
-		bankMembersService.getlogin(bankMembersDTO);
-		HttpSession session = request.getSession();
+	public String login(HttpSession session, BankMembersDTO bankMembersDTO) throws Exception{
+		bankMembersDTO = bankMembersService.getlogin(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
 		return "redirect:../";
 	}
@@ -40,7 +39,7 @@ public class BankMembersController {
 	}
 	
 	//post
-	@RequestMapping(value = "/member/join.iu", method = RequestMethod.POST)//post방식만 받겠다~
+	@RequestMapping(value = "join.iu", method = RequestMethod.POST)//post방식만 받겠다~
 	public String join(BankMembersDTO bankMembersDTO) throws Exception {
 		System.out.println("post Join실행");
 

@@ -18,7 +18,7 @@
  		<table class="table table-striped table-hover">
 			<form action="search.iu" method="post">
 				검색하실 아이디를 입력하세요<input type="text" name="search">
-						<button type="submit" class="btn btn-primary">검색</button>
+						<button type="submit" class="btn btn-secondary">검색</button>
 				</form>
 		</table>
  		</div>

@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,29 +10,23 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-	<h1>BankBook List</h1>
+	<h1>BankAccount List</h1>
 	<!-- /bankbook/list -->
 	<section class="container-fluid col-lg-5 mt-5">
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>Name</th><th>Rate</th>
+				<th>accountNum</th><th>usernaem</th>
+				<th>bookNum</th><th>accountDate</th>
 			</tr>
 		</thead>
 		<tbody>			
 
-				<c:forEach items="${requestScope.list}" var="dto">
 				
-				<tr>
-					<td><a href ="detail.iu?bookNum=${dto.bookNum}">${dto.bookName}</a></td>
-					<td>${dto.bookRate}</td>
-				</tr>
-			
-			</c:forEach>
 		</tbody>
 	
 	</table>
-		<a class="btn btn-secondary" href="./add.iu" role="add">상품 등록</a>
+		<a class="btn btn-secondary" href="./bankbook/list" role="list">list로 돌아가기</a>
 </section>
 </body>
-</html>
+</html> --%>

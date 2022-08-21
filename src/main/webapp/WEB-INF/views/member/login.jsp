@@ -10,12 +10,12 @@
 </head>
 <body>
     <c:import url="../template/header.jsp"></c:import>
+ 			<form action="./login.iu" method="post">
  
 <h3>LOGIN</h3>
  	<section class="container-fluid col-lg-2 mt-5">
  		<div class="row">
  			
- 			<form action="./login.iu" method="post">
 				  <div class="mb-3">
 				    <label class="form-label">아이디를 입력하세요</label>
 				    <input type="text" class="form-control" name="username">
@@ -24,11 +24,11 @@
 				    <label class="form-label">비밀번호를 입력하세요</label>
 				    <input type="password" class="form-control" name="password">
 				  </div>
-				  <button type="submit" class="btn btn-primary">로그인</button>
-				</form>
+				  <button type="submit" class="btn btn-secondary">로그인</button>
 
  		</div>
  	</section>   
+				</form>
  <!--    <form action="./login.iu" method="post">
     
         <div class="container">
@@ -47,8 +47,7 @@
             <a href="../study_index.html">index로 돌아가기</a><br>
 
             
-        </div>
-        </form> -->
+        </div> -->
     <c:import url="../template/footer.jsp"></c:import>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

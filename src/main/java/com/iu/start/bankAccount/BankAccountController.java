@@ -1,5 +1,7 @@
 package com.iu.start.bankAccount;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -16,20 +18,15 @@ public class BankAccountController {
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
 	public String add() {
+		System.out.println("ACCOUNT 실행");
 		return "bankAccount/add";
-	
 	}
 	
-	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public ModelAndView add(BankAccountDTO bankAccountDTO) throws Exception {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		int result = bankAccountService.add(bankAccountDTO);
-		
-		mv.setViewName("redirect:./list.do");
-		return mv;
-		
+	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
+	public String list()throws Exception{
+		System.out.println("account list실행");
+		List<BankAccountDTO> ar = bankAccountService.getList();
+		return "bankAccount/list";
 		
 	}
 }

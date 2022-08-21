@@ -26,7 +26,7 @@ public class BankBookDAO implements BookDAO{
 		return sqlSession.insert(NAMESPACE+"setBankbook", bankBookDTO);
 	}
 
-	public List<BankBookDTO> getList() throws Exception {
+	public List <BankBookDTO> getList() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
 

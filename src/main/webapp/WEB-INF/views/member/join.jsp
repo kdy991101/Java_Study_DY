@@ -10,8 +10,8 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-	<h3>회원가입</h3>
 	<section class="container-fluid col-lg-2 mt-5">
+	<h3>회원가입</h3>
 	<div class="row">
 	
 	<form action="join.iu" method="post">
@@ -40,7 +40,7 @@
   			<input type="email" class="form-control" name="emil">
 			</div>
 			
-			 <button type="submit" class="btn btn-primary">로그인</button>
+			 <button type="submit" class="btn btn-secondary">로그인</button>
 	
 	<!-- <div>
 	

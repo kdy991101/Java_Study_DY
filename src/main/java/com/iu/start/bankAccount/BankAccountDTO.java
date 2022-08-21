@@ -3,16 +3,17 @@ package com.iu.start.bankAccount;
 import java.util.Date;
 
 public class BankAccountDTO {
-	private Long account;
+	private Long accountNum;
 	private String username;
 	private Long bookNum;
 	private Date accountDate;
 	
-	public Long getAccount() {
-		return account;
+
+	public Long getAccountNum() {
+		return accountNum;
 	}
-	public void setAccount(Long account) {
-		this.account = account;
+	public void setAccountNum(Long accountNum) {
+		this.accountNum = accountNum;
 	}
 	public String getUsername() {
 		return username;

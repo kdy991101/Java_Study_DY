@@ -6,7 +6,7 @@
 <mapper namespace="com.iu.start.bankBook.BankBookDAO">
 	
 	<insert id="setBankbook" parameterType="BankBookDTO">
-		INSERT INTO BANKBOOK VALUES (#{bookNum},#{bookName},#{bookRate},1)
+		INSERT INTO BANKBOOK VALUES (#{bookNum},#{bookName},#{bookRate},1,#{bookContents})
 	</insert>
 	
 	<select id="getList" parameterType="String"
@@ -24,7 +24,7 @@
 	</select>
 
 	<update id="setUpdate" parameterType="BankBookDTO">
-			UPDATE BANKBOOK SET BOOKNAME = #{bookName},BOOKRATE = #{bookRate} WHERE BOOKNUM = #{bookNum}
+			UPDATE BANKBOOK SET BOOKNAME = #{bookName},BOOKRATE = #{bookRate},BOOKCONTENTS = #{bookContents} WHERE BOOKNUM = #{bookNum}
 	</update>
 
 	<delete id="setDelete" parameterType="BankBookDTO">
