@@ -6,5 +6,12 @@
     
 <mapper namespace="com.iu.start.bankAccount.BankAccountDAO">
 
-	
+	<insert id="add" parameterType="com.iu.start.bankAccount.BankAccountDTO">
+		INSERT INTO BANKACCOUNT VALUES (ACCOUNT_SEQ.NAXTVAL,#{username},#{bookNum},SYSDATE)
+		</insert>
+		
+		<select id="getlist" parameterType="String" resultType="BankAccountDTO">
+		SELECT * FROM BANKACCOUNT WHERE BOOKNUM = #{bookNum}				
+		</select>
+		
 	</mapper> 

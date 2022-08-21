@@ -10,23 +10,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@Repository(value = "bankAccount/*")
+@Repository(value = "/bankAccount/*")
 public class BankAccountController {
 	
 	@Autowired
 	private BankAccountService bankAccountService;
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
-	public String add() {
+	public String ModelAndView (BankAccountDTO bankAccountDTO) throws Exception{
 		System.out.println("ACCOUNT 실행");
-		return "bankAccount/add";
+		int result = bankAccountService.add(bankAccountDTO);
+		System.out.println(result);
+		
+		return "bankAccount/list";
 	}
 	
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public String list()throws Exception{
+	public ModelAndView list()throws Exception{
 		System.out.println("account list실행");
+		ModelAndView mv = new ModelAndView();
 		List<BankAccountDTO> ar = bankAccountService.getList();
-		return "bankAccount/list";
+		mv.addObject("list",ar);
+		mv.setViewName("bankAccount/list");
+		return mv;
 		
 	}
 }
