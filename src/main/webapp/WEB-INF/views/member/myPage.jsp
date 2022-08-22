@@ -9,29 +9,38 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-<c:import url="../template/header.jsp"></c:import>
-	<h1>BankAccount List</h1>
-	<!-- /bankbook/list -->
-	<section class="container-fluid col-lg-5 mt-5">
+    <c:import url="../template/header.jsp"></c:import>
+	<section class="container-fluid col-lg-10 mt-5">
+	<h3>my Page</h3>
+
+
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>accountNum</th><th>usernaem</th>
-				<th>bookNum</th><th>accountDate</th>
+	<!-- 			<th>username</th>
+				<th>password</th>
+				<th>name</th>
+				<th>email</th>
+				<th>phone</th> -->
+			      <th scope="col">username</th>
+			      <th scope="col">name</th>
+			      <th scope="col">email</th>
+			      <th scope="col">phone</th>
 			</tr>
 		</thead>
-		<tbody>	
-		<c:forEach items="${requestScope.list}" var="list">		
-			<td>${list.accounyNum}</td>
-			<td>${list.username}</td>
-			<td>${list.bookNum}</td>
-			<td>${list.accountDate}</td>
-				
-				</c:forEach>
+		
+		<tbody>
+
+			<tr>
+				<td>${dto.username}</td>
+				<td>${dto.name}</td>
+				<td>${dto.email}</td>
+				<td>${dto.phone}</td>
+			</tr>
+		
 		</tbody>
-	
 	</table>
-		<a class="btn btn-secondary" href="./bankbook/list" role="list">list로 돌아가기</a>
+	</form>
 </section>
 </body>
 </html>

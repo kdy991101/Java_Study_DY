@@ -8,29 +8,27 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.start.bankMembers.BankMembersDAO;
+import com.iu.start.bankMembers.BankMembersDTO;
 
-public class BankMembersDAOTest {
+import cou.iu.start.MyAbstractTest;
+
+public class BankMembersDAOTest extends MyAbstractTest {
 
 	@Autowired
 	private BankMembersDAO bankMembersDAO;
 	
 	@Test
-	public void setJoinTest()throws Exception{
-		int result = bankMembersDAO.setJoin(null);
-		throw new Exception();
-		assertEquals(1, result);
+	public void getMyPageTest()throws Exception{
+		BankMembersDTO bankMembersDTO = new BankMembersDTO();
+		bankMembersDTO.setUsername("qwer");
+		
+		bankMembersDTO = bankMembersDAO.getMyPage(bankMembersDTO);
+		System.out.println(bankMembersDTO.getEmail());
+		assertNotNull(bankMembersDTO);
 	}
 	
-	@Test
-	public void getloginTest()throws Exception{
-		Object obj = bankMembersDAO.getlogin(null);
-		assertNull(obj);
-	}
 	
-	@Test
-	public void getSearch()throws Exception{
 	
-	}
 }
 
 

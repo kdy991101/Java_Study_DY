@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class BankMembersDAO {
+public class BankMembersDAO implements MembersDAO{
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -26,6 +26,12 @@ public class BankMembersDAO {
 	public List<BankMembersDTO> getSearchByID(String search) throws Exception {
 
 		return sqlSession.selectList(NAMESPACE+"getSearchByID",search);
+	}
+
+	@Override
+	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getMyPage",bankMembersDTO);
 	}
 
 }

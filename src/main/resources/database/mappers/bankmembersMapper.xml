@@ -19,4 +19,9 @@ INSERT INTO MEMBERS VALUES(#{username},#{password},#{name},#{email},#{phone})
 SELECT * FROM MEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME ASC
 </select>
 
+<select id="getMyPage" parameterType="BankMembersDTO" 
+								resultType="BankMembersDTO">
+SELECT USERNAME, NAME, EMAIL, PHONE FROM MEMBERS WHERE USERNAME = #{username}
+</select>
+
 </mapper>

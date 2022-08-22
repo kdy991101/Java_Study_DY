@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -72,5 +73,16 @@ public class BankMembersController {
 		session.invalidate();
 		return "redirect:../";
 	}
-
+	
+	@RequestMapping(value = "myPage.iu", method = RequestMethod.GET)
+	public ModelAndView getMyPage(HttpSession session) throws Exception{
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		System.out.println("myPage실행");
+		ModelAndView mv = new ModelAndView();
+		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
+		mv.setViewName("member/myPage");
+		mv.addObject("dto", bankMembersDTO);
+		return mv;
+	}
+	
 }

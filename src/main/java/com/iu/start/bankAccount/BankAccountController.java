@@ -16,7 +16,7 @@ public class BankAccountController {
 	@Autowired
 	private BankAccountService bankAccountService;
 	
-	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
+	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String ModelAndView (BankAccountDTO bankAccountDTO) throws Exception{
 		System.out.println("ACCOUNT 실행");
 		int result = bankAccountService.add(bankAccountDTO);
@@ -29,7 +29,7 @@ public class BankAccountController {
 	public ModelAndView list()throws Exception{
 		System.out.println("account list실행");
 		ModelAndView mv = new ModelAndView();
-		List<BankAccountDTO> ar = bankAccountService.getList();
+		List<BankAccountDTO> ar = bankAccountService.getList(null);
 		mv.addObject("list",ar);
 		mv.setViewName("bankAccount/list");
 		return mv;

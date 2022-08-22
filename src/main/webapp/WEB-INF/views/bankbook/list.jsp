@@ -10,9 +10,9 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-	<h1>BankBook List</h1>
 	<!-- /bankbook/list -->
 	<section class="container-fluid col-lg-5 mt-5">
+	<h1>BankBook List</h1>
 	<table class="table table-striped">
 		<thead>
 			<tr>

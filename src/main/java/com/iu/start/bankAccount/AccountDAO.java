@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.web.servlet.ModelAndView;
 
-public interface AccountDAO {
+import com.iu.start.bankMembers.BankMembersDTO;
 
-	public int add()throws Exception;
+public interface AccountDAO {
 	
-	public List<BankAccountDTO> getList()throws Exception;
+	public int add(BankAccountDTO bankAccountDTO) throws Exception;
+	
+	public List<BankAccountDTO> getList(BankMembersDTO bankMembersDTO)throws Exception;
+
 	
 }

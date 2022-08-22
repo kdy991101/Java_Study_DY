@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iu.start.bankMembers.BankMembersDTO;
+
 @Service
 public class BankAccountService {
 	
@@ -15,8 +17,8 @@ public class BankAccountService {
 		return bankAccountDAO.add(bankAccountDTO);
 	}
 	
-	public List<BankAccountDTO> getList()throws Exception{
-		return bankAccountDAO.getList();
+	public List<BankAccountDTO> getList(BankMembersDTO bankMembersDTO)throws Exception{
+		return bankAccountDAO.getList(bankMembersDTO);
 	}
 
 }
