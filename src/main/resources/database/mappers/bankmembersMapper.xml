@@ -32,6 +32,7 @@ SELECT * FROM MEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME 
 		    USING (BOOKNUM)
 	    WHERE USERNAME=#{username}
 </select>
+
 		<resultMap type="BankMembersDTO" id="getMyPageResult">
 			<id column="USERNAME" property="username"/>
 			<result column="NAME" property="name"/>
