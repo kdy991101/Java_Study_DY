@@ -1,6 +1,7 @@
 package com.iu.start.bankMembers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.start.bankAccount.BankAccountDTO;
+import com.iu.start.bankAccount.BankAccountService;
+
 
 @Controller
 @RequestMapping(value = "/member/*")
@@ -19,6 +23,7 @@ public class BankMembersController {
 	
 	@Autowired
 	private BankMembersService bankMembersService;
+	
 	
 	@RequestMapping(value="login.iu", method=RequestMethod.GET)
 	public void login() throws Exception{
@@ -77,11 +82,11 @@ public class BankMembersController {
 	@RequestMapping(value = "myPage.iu", method = RequestMethod.GET)
 	public ModelAndView getMyPage(HttpSession session) throws Exception{
 		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
 		System.out.println("myPage실행");
 		ModelAndView mv = new ModelAndView();
-		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
+		mv.addObject("dto",bankMembersDTO);//회원의 기본정보 account정보들어가있음
 		mv.setViewName("member/myPage");
-		mv.addObject("dto", bankMembersDTO);
 		return mv;
 	}
 	

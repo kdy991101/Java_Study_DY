@@ -17,11 +17,6 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-	<!-- 			<th>username</th>
-				<th>password</th>
-				<th>name</th>
-				<th>email</th>
-				<th>phone</th> -->
 			      <th scope="col">username</th>
 			      <th scope="col">name</th>
 			      <th scope="col">email</th>
@@ -30,17 +25,38 @@
 		</thead>
 		
 		<tbody>
-
 			<tr>
-				<td>${dto.username}</td>
-				<td>${dto.name}</td>
-				<td>${dto.email}</td>
-				<td>${dto.phone}</td>
+				<td>${requestScope.dto.username}</td>
+				<td>${requestScope.dto.name}</td>
+				<td>${requestScope.dto.email}</td>
+				<td>${requestScope.dto.phone}</td>		
 			</tr>
+		</tbody>
+		
+	</table>
+</section>
+<section class="container-fluid col-lg-10 mt-5">
+	<h3>가입상품</h3>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+			      <th scope="col">accountNum</th>
+			      <th scope="col">bookName</th>
+			      <th scope="col">accountDate</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+				<c:forEach items="${dto.bankAccountDTOs}" var="dto">
+			<tr>
+					<td>${dto.accountNum}</td>
+					<td>${dto.bankBookDTO.bookName}</td>
+					<td>${dto.accountDate}</td>
+			</tr>
+				</c:forEach>
 		
 		</tbody>
 	</table>
-	</form>
 </section>
 </body>
 </html>

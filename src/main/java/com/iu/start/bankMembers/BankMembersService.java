@@ -1,6 +1,8 @@
 package com.iu.start.bankMembers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,8 @@ public class BankMembersService {
 	
 	@Autowired
 	private BankMembersDAO bankMembersDAO;
-	@Autowired
-	private BankAccountDAO bankAccountDAO;
+//	@Autowired
+//	private BankAccountDAO bankAccountDAO;
 	
 	//로그인
 	public BankMembersDTO getlogin(BankMembersDTO bankMembersDTO)throws Exception{
@@ -30,11 +32,37 @@ public class BankMembersService {
 	public List<BankMembersDTO> getSearchByID(String search)throws Exception{
 		return bankMembersDAO.getSearchByID(search);
 	}
-
-	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO) throws Exception {
-		// TODO Auto-generated method stub
-		List<BankAccountDTO> ar = bankAccountDAO.getList(bankMembersDTO);
+//==========================================================================================++1++
+//	public Map<String, Object> getMyPage(BankMembersDTO bankMembersDTO) throws Exception {
+//		// TODO Auto-generated method stub
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		List<BankAccountDTO> ar = bankAccountDAO.getList(bankMembersDTO);
+//		bankMembersDTO = bankMembersDAO.getMyPage(bankMembersDTO);
+//		map.put("list", ar);
+//		map.put("dto", bankMembersDTO);
+//		return map;
+//	};
+//==========================================================================================++2++
+	public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO) throws Exception{
 		return bankMembersDAO.getMyPage(bankMembersDTO);
-	};
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 }

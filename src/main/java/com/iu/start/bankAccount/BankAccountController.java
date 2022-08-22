@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.start.bankMembers.BankMembersDTO;
+
 @Controller
 @Repository(value = "/bankAccount/*")
 public class BankAccountController {
@@ -26,10 +28,10 @@ public class BankAccountController {
 	}
 	
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public ModelAndView list()throws Exception{
+	public ModelAndView list(BankMembersDTO bankMembersDTO)throws Exception{
 		System.out.println("account list실행");
 		ModelAndView mv = new ModelAndView();
-		List<BankAccountDTO> ar = bankAccountService.getList(null);
+		List<BankAccountDTO> ar = bankAccountService.getList(bankMembersDTO);
 		mv.addObject("list",ar);
 		mv.setViewName("bankAccount/list");
 		return mv;
