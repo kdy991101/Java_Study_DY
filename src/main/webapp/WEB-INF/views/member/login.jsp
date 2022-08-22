@@ -12,17 +12,17 @@
     <c:import url="../template/header.jsp"></c:import>
  			<form action="./login.iu" method="post">
  
-<h3>LOGIN</h3>
  	<section class="container-fluid col-lg-2 mt-5">
+<h3>로그인</h3>
  		<div class="row">
  			
 				  <div class="mb-3">
-				    <label class="form-label">아이디를 입력하세요</label>
-				    <input type="text" class="form-control" name="username">
+				   
+				    <input type="text" placeholder="아이디를 입력해주세요"class="form-control" name="username">
 				  </div>
 				  <div class="mb-3">
-				    <label class="form-label">비밀번호를 입력하세요</label>
-				    <input type="password" class="form-control" name="password">
+	
+				    <input type="password"  placeholder="비밀번호를 입력해주세요" class="form-control" name="password">
 				  </div>
 				  <button type="submit" class="btn btn-secondary">로그인</button>
 

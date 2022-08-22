@@ -16,28 +16,28 @@
 	
 	<form action="join.iu" method="post">
 			<div class="mb-3">
-			아이디를 입력하세요<br>
-		  <input type="text" class="form-control" name="username">
+
+		  <input type="text" placeholder="아이디를 입력해주세요"class="form-control" name="username">
 			</div>
 			
 			<div class="mb-3">
-		  비밀번호를 입력하세요<br>
-		  <input type="password" class="form-control" name="password">
+
+		  <input type="password" placeholder="비밀번호를 입력해주세요"class="form-control" name="password">
 			</div>
 			
 			<div class="mb-3">
-		  성함를 입력하세요<br>
-		  <input type="text" class="form-control" name="name">
+
+		  <input type="text" placeholder="이름을 입력해주세요"class="form-control" name="name">
 			</div>
 			
 			<div class="mb-3">
-		  전화번호를 입력하세요<br>
-		  <input type="tel" class="form-control" name="phone">
+
+		  <input type="tel" placeholder="전화번호를 입력해주세요"class="form-control" name="phone">
 			</div>
 			
 			<div class="mb-3">
- 			Email 입력하세요<br>
-  			<input type="email" class="form-control" name="emil">
+
+  			<input type="email" placeholder="이메일을 입력해주세요"class="form-control" name="emil">
 			</div>
 			
 			 <button type="submit" class="btn btn-secondary">로그인</button>

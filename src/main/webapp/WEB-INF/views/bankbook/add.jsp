@@ -18,15 +18,15 @@
 		<form action="add.iu" method="post">
 		
 			<div class="mb-3">
-				통장의 이름을 입력하세요<br><input type="text" class="form-control" name="bookName"><br>
+				<br><input type="text" placeholder="통장의 이름을 입력해주세요" class="form-control" name="bookName">
 			</div>
 			
 			<div class="mb-3">
-				이자율을 입력하세요<br><input type="text" class="form-control" name="bookRate"><br>
+				<br><input type="text" placeholder="이자율을 입력해주세요"class="form-control" name="bookRate">
 			</div>
 			
 			<div class="mb-3">
-				contents를 입력하세요<br><input type="text" class="form-control" name="bookContents"><br>
+			<br><input type="text" placeholder="CONTENTS를 입력해주세요"class="form-control" name="bookContents">
 			</div>
 		
 			<div class="mb-3">

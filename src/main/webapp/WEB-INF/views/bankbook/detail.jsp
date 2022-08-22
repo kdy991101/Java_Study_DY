@@ -14,7 +14,6 @@
 <c:import url="../template/header.jsp"></c:import>
 
 <section class="container-fluid col-lg-5 mt-5">
-<a class="btn btn-secondary" href="./list.iu" role="List">상품 페이지</a>
 	
 	<!-- /bankbook/detail -->
 	<!-- link 주소는 상대경로 작 -->
@@ -38,15 +37,17 @@
 	</tbody>
 </table>
 	<c:if test="${empty sessionScope.member}">
-	<a class="btn btn-secondary" href="/member/login.iu" role="Join">로그인 페이지</a>
-	<a class="btn btn-secondary" href="./update.iu?bookNum=${detail.bookNum}" role="Update">수정 페이지</a>
-	<a class="btn btn-secondary" href="delete.iu?bookNum=${detail.bookNum}" role="delete">삭제 페이지</a>
+	<a class="btn btn-secondary" href="./list.iu" role="List">상품리스트로 돌아가기</a>
+	<a class="btn btn-secondary" href="/member/login.iu" role="Join">로그인</a>
+	<a class="btn btn-secondary" href="./update.iu?bookNum=${detail.bookNum}" role="Update">수정</a>
+	<a class="btn btn-secondary" href="delete.iu?bookNum=${detail.bookNum}" role="delete">삭제</a>
 		</c:if>
 		
 	<c:if test="${not empty sessionScope.member}">
-	<a class="btn btn-secondary" href="./update.iu?bookNum=${detail.bookNum}" role="Update">수정 페이지</a>
-	<a class="btn btn-secondary" href="delete.iu?bookNum=${detail.bookNum}" role="delete">삭제 페이지</a>
-	<a class="btn btn-secondary" href="../bankAccount/add.iu?bookNum=${detail.bookNum}" role="detail">가입 페이지</a>
+<a class="btn btn-secondary" href="./list.iu" role="List">상품리스트로 돌아가기</a>
+	<a class="btn btn-secondary" href="./update.iu?bookNum=${detail.bookNum}" role="Update">수정</a>
+	<a class="btn btn-secondary" href="delete.iu?bookNum=${detail.bookNum}" role="delete">삭제</a>
+	<a class="btn btn-secondary" href="../bankAccount/add.iu?bookNum=${detail.bookNum}" role="detail">가입</a>
 		 </c:if>
 </section>
 </body>

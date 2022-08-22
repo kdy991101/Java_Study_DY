@@ -11,13 +11,13 @@
 </head>
 <body>
    <c:import url="../template/header.jsp"></c:import>
-	<h3>Search</h3>
 	<section class="container-fluid col-lg-2 mt-5">
+	<h3>아이디 찾기</h3>
  		<div class="row">
  		
  		<table class="table table-striped table-hover">
 			<form action="search.iu" method="post">
-				검색하실 아이디를 입력하세요<input type="text" name="search">
+				<input type="text" placeholder="아이디를 입력해주세요" name="search">
 						<button type="submit" class="btn btn-secondary">검색</button>
 				</form>
 		</table>
