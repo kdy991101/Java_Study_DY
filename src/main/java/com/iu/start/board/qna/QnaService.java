@@ -2,48 +2,52 @@ package com.iu.start.board.qna;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardService;
 
-@Repository
-public class QnaDAO implements BoardDAO {
-	
+@Service
+public class QnaService implements BoardService{
+
 	@Autowired
-	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.iu.start.board.qna.QnaDAO.";
+	private QnaDAO qnaDAO;
 	
 	@Override
 	public List<BoardDTO> getList() throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAMESPACE+"getList");
+		return qnaDAO.getList();
 	}
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"getDatail",boardDTO);
+		return qnaDAO.getDetail(boardDTO);
 	}
 
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(NAMESPACE+"setAdd", boardDTO);
+		return qnaDAO.setAdd(boardDTO);
 	}
 
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.insert(NAMESPACE+"setUpdate", boardDTO);
+		return qnaDAO.setUpdate(boardDTO);
 	}
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
+		return qnaDAO.setDelete(boardDTO);
 	}
+	
+	
+	
+	
+	
+	
 	
 }
