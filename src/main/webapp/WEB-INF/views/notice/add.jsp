@@ -11,7 +11,7 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-	<section class="container-fluid col-lg-2 mt-5">
+	<section class="container-fluid col-lg-4 mt-5">
 	<div class="row">
 		<h1>글 등록</h1>
 		
@@ -25,7 +25,7 @@
 				<br><input type="text" placeholder="작성자의 이름을 입력해주세요"class="form-control" name="writer">
 			</div>
 			
-			<textarea id="contents" placeholder="내용을 입력해주세요" name="contents" rows="10" cols="50"></textarea>
+			<textarea id="contents" placeholder="내용을 입력해주세요" name="contents" rows="10" cols="80"></textarea>
 		
 			<div class="mb-3">
 				<input type="submit" class="btn btn-secondary" value="등록" name="글등록">
@@ -34,5 +34,8 @@
 		</form>
 		</div>
 		</section>
+		 <c:import url="../template/footer.jsp"></c:import>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+		
 </body>
 </html>
