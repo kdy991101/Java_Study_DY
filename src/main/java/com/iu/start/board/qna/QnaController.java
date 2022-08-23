@@ -29,7 +29,7 @@ public class QnaController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "datail.iu", method = RequestMethod.GET)
+	@RequestMapping(value = "detail.iu", method = RequestMethod.GET)
 	public String getDetail(BoardDTO boardDTO, Model model)throws Exception{
 		System.out.println("getdetail실행");
 		
@@ -72,12 +72,22 @@ public class QnaController {
 	}
 	
 	
-	public String setDelete(BoardDTO boardDTO)throws Exception{
-		System.out.println("delete실행");
-		
-		int result = qnaService.setDelete(boardDTO);
-		return "redirect:./list.iu";
-	}
+	//글 삭제
+		@RequestMapping(value = "delete.iu")
+		public ModelAndView setDelete(BoardDTO boardDTO)throws Exception{
+			System.out.println("delete실행");
+			int result=qnaService.setDelete(boardDTO);
+			ModelAndView mv = new ModelAndView();
+			
+			if(result == 1) {
+				System.out.println("성공");
+			} else {
+				System.out.println("실패");
+				
+			}
+			mv.setViewName("redirect:./list.iu");
+			return mv;
+		}
 
 }
 

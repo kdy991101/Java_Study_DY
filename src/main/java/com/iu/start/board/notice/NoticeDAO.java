@@ -25,7 +25,7 @@ public class NoticeDAO implements BoardDAO{
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAMESPACE+"getDatail",boardDTO);
+		return sqlSession.selectOne(NAMESPACE+"getDetail",boardDTO);
 	}
 
 	@Override

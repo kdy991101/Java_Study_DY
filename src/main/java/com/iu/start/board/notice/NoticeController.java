@@ -34,13 +34,13 @@ public class NoticeController {
 	}
 	
 	//글 상세
-	@RequestMapping(value = "datail.iu", method = RequestMethod.GET)
+	@RequestMapping(value = "detail.iu", method = RequestMethod.GET)
 	public String getDatail(BoardDTO boardDTO, Model model)throws Exception{
-		System.out.println("getDatail실행");
+		System.out.println("getDetail실행");
 		
-		model.addAttribute("boardDTO", boardDTO);
 		boardDTO = noticeService.getDetail(boardDTO);
-		return "notice/datail";
+		model.addAttribute("boardDTO", boardDTO);
+		return "notice/detail";
 	}
 	
 	//글 작성
@@ -79,11 +79,20 @@ public class NoticeController {
 	}
 	
 	//글 삭제
-	public String setDelete(BoardDTO boardDTO)throws Exception{
+	@RequestMapping(value = "delete.iu")
+	public ModelAndView setDelete(BoardDTO boardDTO)throws Exception{
 		System.out.println("delete실행");
-
 		int result=noticeService.setDelete(boardDTO);
-		return "redirect:./list.iu";
+		ModelAndView mv = new ModelAndView();
+		
+		if(result == 1) {
+			System.out.println("성공");
+		} else {
+			System.out.println("실패");
+			
+		}
+		mv.setViewName("redirect:./list.iu");
+		return mv;
 	}
 	
 }
