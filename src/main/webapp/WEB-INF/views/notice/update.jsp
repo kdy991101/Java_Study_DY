@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
             <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -12,13 +11,13 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-2 mt-5">
-	<div class="row">
 		<h1>수정</h1>
-		<input type="hidden" name=num value="${boardDTO.num}">
+	<div class="row">
 		<form action="update.iu" method="post">
+		<input type="hidden" name=num value="${boardDTO.num}">
 		
 			<div class="mb-3">
-				<br><input type="text" placeholder="제목을 입력해주세요" class="form-control" name="title">
+				<br><input type="text" class="form-control" name="title" value="${boardDTO.title}">
 			</div>
 
 			<textarea name="contents" rows="10" cols="50">${boardDTO.contents}</textarea>

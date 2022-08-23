@@ -18,7 +18,7 @@
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                             <a class="nav-link active" href="/bankbook/list.iu">상품리스트</a>
                             <a class="nav-link active" href="/notice/list.iu">공지사항</a>
-                            <a class="nav-link active" href="/qna/list.iu">자유게시판</a>
+                            <a class="nav-link active" href="/qna/list.iu">QnA</a>
                             <a class="nav-link active" href="/member/search.iu">회원검색</a>
                             
                             <c:choose>

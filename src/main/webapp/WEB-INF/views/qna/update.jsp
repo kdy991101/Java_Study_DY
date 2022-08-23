@@ -18,7 +18,7 @@
 		<form action="update.iu" method="post">
 		
 			<div class="mb-3">
-				<br><input type="text" placeholder="제목을 입력해주세요" class="form-control" name="title">
+				<br><input type="text" class="form-control" name="title" value="${boardDTO.title}">
 			</div>
 
 			<textarea name="contents" rows="10" cols="50">${boardDTO.contents}</textarea>

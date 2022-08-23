@@ -10,7 +10,7 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-2 mt-5">
-<h1>업데이트 페이지</h1>
+<h1>수정</h1>
 	<div class="row">
 <form action="update.iu" method="post">
 
