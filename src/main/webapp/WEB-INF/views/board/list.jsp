@@ -36,6 +36,18 @@
 			</tbody>
 
 </table>
+
+<nav aria-label="Page navigation example">
+  		<ul class="pagination">
+    		<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+  				<li class="page-item"><a class="page-link" href="./list.iu?page=${i}">${i}</a></li>
+  			</c:forEach>
+    		<li class="page-item"><a class="page-link" href="#">Next</a></li>
+  		</ul>
+</nav>
+
+
 <a class="btn btn-secondary" href="./add.iu" role="add">공지사항 등록</a>
 </section>
  <c:import url="../template/footer.jsp"></c:import>

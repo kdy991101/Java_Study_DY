@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.impl.BoardService;
+import com.iu.start.util.Pager;
 
 @Controller
 @RequestMapping("/notice/*")
@@ -30,14 +31,16 @@ public class NoticeController {
 	
 	//글 목록
 	@RequestMapping(value = "list.iu", method=RequestMethod.GET)
-	public ModelAndView getList(@RequestParam(defaultValue = "1") Long page)throws Exception{
-		System.out.println("getList실행");
-		System.out.println("Page :"+page);
+	public ModelAndView getList(Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = noticeService.getList(page);
-		//실제로 리턴되는건 boardDTO가 아닌 noticeDTO가 담긴다,,
+		System.out.println(pager.getPage());
+		System.out.println("getList실행");
+//		System.out.println("Page :"+page);
+		List<BoardDTO> ar = noticeService.getList(pager);
+//		실제로 리턴되는건 boardDTO가 아닌 noticeDTO가 담긴다,,
 		
 		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
 		mv.setViewName("board/list");
 		return mv;
 	}
