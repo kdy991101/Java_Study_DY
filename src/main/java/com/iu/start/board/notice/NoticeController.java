@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDAO;
@@ -19,18 +21,23 @@ public class NoticeController {
 	
 	@Autowired//주입
 	private NoticeService noticeService;
+	
+	@ModelAttribute("board")
+	public String getBoard() {
+		return "공지사항";
+	}
 	//컨트롤러의 메서드의 리턴은 결론적으로 mv로 됨
 	
 	//글 목록
 	@RequestMapping(value = "list.iu", method=RequestMethod.GET)
-	public ModelAndView getList()throws Exception{
+	public ModelAndView getList(@RequestParam(defaultValue = "1") Long page)throws Exception{
 		System.out.println("getList실행");
+		System.out.println("Page :"+page);
 		ModelAndView mv = new ModelAndView();
-		List<BoardDTO> ar = noticeService.getList();
+		List<BoardDTO> ar = noticeService.getList(page);
 		//실제로 리턴되는건 boardDTO가 아닌 noticeDTO가 담긴다,,
 		
 		mv.addObject("list", ar);
-		mv.addObject("board", "Notice리스트");
 		mv.setViewName("board/list");
 		return mv;
 	}
@@ -42,7 +49,6 @@ public class NoticeController {
 		
 		boardDTO = noticeService.getDetail(boardDTO);
 		model.addAttribute("boardDTO", boardDTO);
-		model.addAttribute("board","Notice상세");
 		return "board/detail";
 	}
 	
@@ -50,7 +56,6 @@ public class NoticeController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
 	public String setAdd(Model model)throws Exception{
 		System.out.println("getAdd실행");
-		model.addAttribute("board", "Notice추가");
 		
 		return "board/add";
 	}
@@ -72,7 +77,6 @@ public class NoticeController {
 		boardDTO = noticeService.getDetail(boardDTO);
 		mv.addObject("boardDTO", boardDTO);
 		mv.setViewName("board/update");
-		mv.addObject("board", "Notice수정");
 		return mv;
 	}
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)

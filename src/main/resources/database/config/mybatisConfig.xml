@@ -11,6 +11,7 @@
 				  <typeAlias type="com.iu.start.bankBook.BankBookDTO" alias="BankBookDTO"/>
 				  <typeAlias type="com.iu.start.bankAccount.BankAccountDTO" alias="BankAccountDTO"/>
 				  <typeAlias type="java.util.List" alias="List"/>
+				  <typeAlias type="java.lang.Long" alias="Long"/>
 				  <typeAlias type="com.iu.start.board.notice.NoticeDTO" alias="NoticeDTO"/>
 				  <typeAlias type="com.iu.start.board.impl.BoardDTO" alias="BoardDTO"/>
 				  <typeAlias type="com.iu.start.board.qna.QnaDTO" alias="QnaDTO"/>

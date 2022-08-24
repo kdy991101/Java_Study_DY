@@ -5,12 +5,19 @@
 		    
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
 
-	<select id="getList"  resultType="NoticeDTO">
-		SELECT NUM, TITLE, WRITER, REGDATE, HIT FROM NOTICE ORDER BY NUM DESC 
+	<select id="getList"  resultType="NoticeDTO" parameterType="java.util.Map">
+		SELECT * FROM 
+		(SELECT ROWNUM R,N.* FROM 
+		(SELECT * FROM NOTICE ORDER BY NUM DESC) N)			
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
 		SELECT * FROM NOTICE WHERE NUM = #{num}							
+	</select>
+	
+	<select id="getCount" resultType="Long">
+		SELECT COUNT(NUM) FROM NOTICE
 	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">

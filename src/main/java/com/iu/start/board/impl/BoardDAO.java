@@ -1,15 +1,19 @@
 package com.iu.start.board.impl;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BoardDAO {
 	//인터페이스는 접근지정자 무조건public 생략 가능
 	
 	//글 목록
-	public List<BoardDTO> getList()throws Exception;
+	public List<BoardDTO> getList(Map<String, Long> map)throws Exception;
 	
 	//글 상세
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception;
+	
+	//글 수
+	public Long getCount()throws Exception;
 	
 	//글 작성
 	public int setAdd(BoardDTO boardDTO)throws Exception;
