@@ -12,7 +12,7 @@
 <c:import url="../template/header.jsp"></c:import>
 
 		<section class="container-fluid col-lg-5 mt-5">
-	<h1>글 상세보기</h1>
+		<h1 class="align-center">${board}</h1>
 		<table class="table table-striped">
 	<thead>
 			<tr>

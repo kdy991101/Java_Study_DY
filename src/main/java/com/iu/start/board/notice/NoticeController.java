@@ -27,9 +27,11 @@ public class NoticeController {
 		System.out.println("getList실행");
 		ModelAndView mv = new ModelAndView();
 		List<BoardDTO> ar = noticeService.getList();
+		//실제로 리턴되는건 boardDTO가 아닌 noticeDTO가 담긴다,,
 		
 		mv.addObject("list", ar);
-		mv.setViewName("notice/list");
+		mv.addObject("board", "Notice리스트");
+		mv.setViewName("board/list");
 		return mv;
 	}
 	
@@ -40,15 +42,17 @@ public class NoticeController {
 		
 		boardDTO = noticeService.getDetail(boardDTO);
 		model.addAttribute("boardDTO", boardDTO);
-		return "notice/detail";
+		model.addAttribute("board","Notice상세");
+		return "board/detail";
 	}
 	
 	//글 작성
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
-	public String setAdd()throws Exception{
+	public String setAdd(Model model)throws Exception{
 		System.out.println("getAdd실행");
+		model.addAttribute("board", "Notice추가");
 		
-		return "notice/add";
+		return "board/add";
 	}
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO)throws Exception{
@@ -67,7 +71,8 @@ public class NoticeController {
 		
 		boardDTO = noticeService.getDetail(boardDTO);
 		mv.addObject("boardDTO", boardDTO);
-		mv.setViewName("notice/update");
+		mv.setViewName("board/update");
+		mv.addObject("board", "Notice수정");
 		return mv;
 	}
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)

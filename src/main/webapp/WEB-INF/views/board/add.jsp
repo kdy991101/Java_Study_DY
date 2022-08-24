@@ -11,41 +11,21 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-	<h1>수정</h1>
-				<section class="container-fluid col-lg-5 mt-5">
-			<table class="table table-striped">
-	<thead>
-			<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>날짜</th>
-			<th>조회수</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>${boardDTO.num}</td>
-				<td>${boardDTO.title}</td>
-				<td>${boardDTO.writer}</td>
-				<td>${boardDTO.regDate}</td>
-				<td>${boardDTO.hit}</td>
-			</tr>
-		</tbody>
-		
-</table>
-</section>
-
-	<section class="container-fluid col-lg-2 mt-5">
+	<section class="container-fluid col-lg-4 mt-5">
 	<div class="row">
+		<h1 class="align-center">${board}</h1>
 		
-		<form action="update.iu" method="post">
+		<form action="add.iu" method="post">
 		
 			<div class="mb-3">
-				제목<br><input type="text" class="form-control" name="title" value="${boardDTO.title}">
+				<br><input type="text" placeholder="제목을 입력해주세요" class="form-control" name="title">
 			</div>
-
-			내용<br><textarea name="contents" rows="10" cols="50">${boardDTO.contents}</textarea>
+			
+			<div class="mb-3">
+				<br><input type="text" placeholder="작성자의 이름을 입력해주세요"class="form-control" name="writer">
+			</div>
+			
+			<textarea id="contents" placeholder="내용을 입력해주세요" name="contents" rows="10" cols="80"></textarea>
 		
 			<div class="mb-3">
 				<input type="submit" class="btn btn-secondary" value="등록" name="글등록">

@@ -10,8 +10,8 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-		<h1>수정</h1>
 				<section class="container-fluid col-lg-3 mt-5">
+		<h1 class="align-center">${board}</h1>
 			<table class="table table-striped">
 	<thead>
 			<tr>

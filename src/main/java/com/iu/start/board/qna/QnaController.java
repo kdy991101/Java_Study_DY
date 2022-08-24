@@ -25,7 +25,8 @@ public class QnaController {
 		List<BoardDTO> ar = qnaService.getList();
 		
 		mv.addObject("list", ar);
-		mv.setViewName("qna/list");
+		mv.addObject("board", "Qna리스트");
+		mv.setViewName("board/list");
 		return mv;
 	}
 	
@@ -35,14 +36,16 @@ public class QnaController {
 		
 		boardDTO = qnaService.getDetail(boardDTO);
 		model.addAttribute("boardDTO", boardDTO);
-		return "qna/detail";
+		model.addAttribute("board","Qna상세");
+		return "board/detail";
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
-	public String setAdd()throws Exception{
+	public String setAdd(Model model)throws Exception{
 		System.out.println("getadd실행");
 		
-		return "qna/add";
+		model.addAttribute("board", "Qna추가");
+		return "board/add";
 	}
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO)throws Exception{
@@ -60,7 +63,8 @@ public class QnaController {
 		
 		boardDTO = qnaService.getDetail(boardDTO);
 		mv.addObject("boardDTO", boardDTO);
-		mv.setViewName("qna/update");
+		mv.addObject("board", "Qna수정");
+		mv.setViewName("board/update");
 		return mv;
 	}
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
