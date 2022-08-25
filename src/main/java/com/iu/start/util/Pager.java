@@ -42,21 +42,30 @@ public class Pager {
 		public void getNum(Long totalCount)throws Exception{
 		//2.totalCount로 totalPage구하기
 		Long totalPage = totalCount/this.getPerPage();
+		System.out.println("2totalPage" + totalPage);//20
 		if(totalCount%this.getPerPage() != 0) {
 			totalPage++;
+			int result = (int) (totalCount%this.getPerPage());
+			
+			System.out.println(totalCount);//206,db데이터가 들어가있음
+			System.out.println("2result"+result);//6
+			System.out.println("2totalPage" + totalPage);//21
 		}
 		
-		//2_1 totalPage보다 pags가 더 클 경우
-		System.out.println(this.getPerPage());
-		System.out.println(totalPage);
+		//2_1 totalPage보다 page가 더 클 경우
+		System.out.println("perpage"+this.getPerPage());
+		System.out.println("2_1totalpage" + totalPage);
 		if(this.getPage()>totalPage) {
 			this.setPage(totalPage);
+			//마지막 페이지로가게 하는 것
 		}
 		
-		//3.위에서 구한 totalPage를 이용해서 totalBock구하기
+		//3.위에서 구한 totalPage21를 이용해서 totalBock구하기
 		Long totalBlock = totalPage/this.getPerBlock();
+		System.out.println("3perBlock"+this.getPerBlock());
 		if(totalPage%this.getPerBlock() != 0) {
 			totalBlock++;
+			System.out.println("3perBlock"+totalBlock); 
 		}
 	
 		//4.이 페이지가 몇번페이지에 속하는지,,curBlock찾기
@@ -67,6 +76,7 @@ public class Pager {
 		
 		//5.위애서 구한 curBlock으로 startNum,lastNum계산
 		this.startNum = (curBlock-1)*this.getPerBlock()+1;
+		System.out.println("startNum"+startNum);
 		this.lastNum = curBlock*this.getPerBlock();
 		
 		//6.현재 블럭이 마지막 블럭일 때 (현재Block=totalBlock)
