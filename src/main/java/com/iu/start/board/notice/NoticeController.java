@@ -32,13 +32,15 @@ public class NoticeController {
 	//글 목록
 	@RequestMapping(value = "list.iu", method=RequestMethod.GET)
 	public ModelAndView getList(Pager pager)throws Exception{
+//		실제로 리턴되는건 boardDTO가 아닌 noticeDTO가 담긴다,,
 		ModelAndView mv = new ModelAndView();
+		List<BoardDTO> ar = noticeService.getList(pager);
+		
 		System.out.println(pager.getPage());
 		System.out.println("getList실행");
-//		System.out.println("Page :"+page);
-		List<BoardDTO> ar = noticeService.getList(pager);
-//		실제로 리턴되는건 boardDTO가 아닌 noticeDTO가 담긴다,,
-		
+		System.out.println(pager.getKind());
+		System.out.println(pager.getSearch());
+
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("board/list");

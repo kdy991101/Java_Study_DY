@@ -16,11 +16,14 @@ public class Pager {
 	private Long lastRow;
 	private Long perPage;
 	private Long perBlock;
-	
 	//이전Blockㅣ의 유뮤를 판단-이전 블럭이 있으면 true 없으면  false 
 	private boolean pre;
 	//다음 Block의 유무-다름블럭이 읶으면 true 없으면 false
 	private boolean next;
+	//검색 컬럼의 종류
+	private String kind;
+	//검색어
+	private String search;
 	
 	public Pager() {
 		this.perPage=10L;
@@ -116,14 +119,12 @@ public class Pager {
 	public void setLastRow(Long lastRow) {
 		this.lastRow = lastRow;
 	}
-
 	public Long getPerPage() {
 		if(this.perPage==null) {
 			this.perPage=10L;
 		}
 		return perPage;
 	}
-
 	public void setPerPage(Long perPage) {
 		this.perPage = perPage;
 	}
@@ -135,26 +136,35 @@ public class Pager {
 	public void setPerBlock(Long perBlock) {
 		this.perBlock = perBlock;
 	}
-
 	//is로 시작하는 메서드는 true,false로 리턴된다 getter이지만 is로 되어있음
 	public boolean isPre() {
 		return pre;
 	}
-
-
 	public void setPre(boolean pre) {
 		this.pre = pre;
 	}
-
-
 	public boolean isNext() {
 		return next;
 	}
-
-
 	public void setNext(boolean next) {
 		this.next = next;
 	}
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	public String getSearch() {
+		if(this.search == null) {
+			this.search="";
+		}
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 	
 	
 

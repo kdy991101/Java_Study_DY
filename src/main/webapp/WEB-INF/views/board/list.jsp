@@ -12,6 +12,32 @@
 <c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-5 mt-5">
 	<h1 class="align-center">${board}</h1>
+	
+	<div class="row">
+			<form action="./list.iu"  class="row row-cols-lg-auto g-3 align-items-center">
+			  <div class="col-12">
+			    <label class="visually-hidden" for="kind">Kind</label>
+			    <select  name="kind" class="form-select" id="kind">
+			      <option value="contents">내용</option>
+			      <option value="title">제목</option>
+			      <option value="writer">작성자</option>
+			    </select>
+			    <!-- kind란 이름으로 넘어감 -->
+			  </div>
+			  
+			  <div class="col-12">
+			    <label class="visually-hidden" for="search">검색어</label>
+			    <div class="input-group">
+			      <input type="text" name="search" var="" class="form-control" placeholder="검색어를 입력해 주세요">
+			    </div>
+			  </div>
+			
+			  <div class="col-12">
+			    <button type="submit" class="btn btn-secondary">검색</button>
+			  </div>
+			</form>
+		</div>
+	
 	<table class="table table-striped">
 		<!--  NUM, TITLE, WRITER, REGDATE, HIT -->
 				<thead>
@@ -27,7 +53,11 @@
 						<c:forEach items="${requestScope.list}" var="list">
 						<tr>
 							<td>${list.num}</td>
-							<td><a href ="detail.iu?num=${list.num}">${list.title}</a></td>
+							<td>
+							<c:catch>
+								<c:forEach begin="1" end="${list.depth}">&ensp;</c:forEach>
+							</c:catch>
+							<a  href ="detail.iu?num=${list.num}">${list.title}</a></td>
 							<td>${list.writer}</td>
 							<td>${list.regDate}</td>
 							<td>${list.hit}</td>
@@ -44,12 +74,12 @@
 		<nav aria-label="Page navigation example">
 		  		<ul class="pagination">
 		  			<c:if test="${pager.pre}">
-		    			<li class="page-item"><a class="page-link" href="./list.iu?page=${pager.startNum-1}">◁</a></li>
+		    			<li class="page-item"><a class="page-link" href="./list.iu?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">◁</a></li>
 		    		</c:if>
 		    		
 		    		<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			  			<li class="page-item disabled">
-			  				<a class="page-link" href="./list.iu?page=${i}">${i}</a>
+			  			<li class="page-item">
+			  				<a class="page-link" href="./list.iu?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a>
 			  			</li>
 		  			</c:forEach>
 		    		

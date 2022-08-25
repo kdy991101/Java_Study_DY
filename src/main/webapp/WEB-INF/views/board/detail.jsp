@@ -40,8 +40,11 @@
          <textarea class="form-control" readonly id="exampleFormControlTextarea1" rows="20">${requestScope.boardDTO.contents}</textarea>
 
 
-	<a class="btn btn-secondary" href="./update.iu?num=${boardDTO.num}" role="update">수정</a>
-	<a class="btn btn-secondary" href="delete.iu?num=${boardDTO.num}" role="delete">삭제</a>
+		<a class="btn btn-secondary" href="./update.iu?num=${boardDTO.num}" role="update">수정</a>
+		<a class="btn btn-secondary" href="delete.iu?num=${boardDTO.num}" role="delete">삭제</a>
+		<a class="btn btn-secondary" href="./reply.iu?num=${boardDTO.num}" role="reply">답글</a>	
+
+	
 </section>
  <c:import url="../template/footer.jsp"></c:import>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

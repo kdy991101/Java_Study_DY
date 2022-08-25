@@ -5,20 +5,36 @@
 		    
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
 
-	<select id="getList"  resultType="NoticeDTO" parameterType="java.util.Map">
+	<sql id="search">
+		WHERE
+			 	<choose>
+			 	<!-- #{}'X'조건식에서 쓸 때에는 그냥 받아온 이름 입력
+			 		동적SQL이라 함 -->
+			 		<when test="kind == 'title'">TITLE</when>
+			 		<when test="kind == 'writer'">WRITER</when>
+					<otherwise>CONTENTS</otherwise>
+			 	</choose> 
+			LIKE '%'||#{search}||'%'
+	</sql>
+	
+	<select id="getList"  resultType="NoticeDTO" parameterType="Pager">
 		SELECT * FROM 
 		(SELECT ROWNUM R,N.* FROM 
-		(SELECT * FROM NOTICE ORDER BY NUM DESC) N)			
+		(SELECT * FROM NOTICE
+			<include refid="search"></include>
+		 ORDER BY NUM DESC) N)			
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		SELECT COUNT(NUM) FROM NOTICE
+		<include refid="search"></include>		
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
 		SELECT * FROM NOTICE WHERE NUM = #{num}							
 	</select>
 	
-	<select id="getCount" resultType="Long">
-		SELECT COUNT(NUM) FROM NOTICE
-	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
 		INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0)

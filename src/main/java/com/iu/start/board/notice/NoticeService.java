@@ -21,7 +21,7 @@ public class NoticeService implements BoardService {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-			Long totalCount=noticeDAO.getCount();
+			Long totalCount=noticeDAO.getCount(pager);
 			pager.getNum(totalCount);
 			pager.getRowNum();
 		
@@ -97,8 +97,7 @@ public class NoticeService implements BoardService {
 //		Long lastNum = curBlock*perBlock;
 //		
 //	
-		return noticeDAO.getList(pager);
-		
+		return noticeDAO.getList(pager);	
 	}
 
 	@Override

@@ -2,27 +2,65 @@
 <!DOCTYPE mapper
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+		    
 <mapper namespace="com.iu.start.board.qna.QnaDAO">
-		    	
-	<select id="getList"  resultType="QnaDTO">
-		SELECT NUM, TITLE, WRITER, REGDATE, HIT FROM QNA ORDER BY NUM DESC 
+
+	<insert id="setReplyAdd" parameterType="QnaDTO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+	
+		INSERT INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{ref}, #{step}, #{depth})
+	</insert>
+	
+	<update id="setStepUpdate" parameterType="QnaDTO">
+		UPDATE QNA SET STEP = STEP+1 WHERE REF=#{ref} AND STEP > #{step}
+	</update>
+
+	<sql id="search">
+		WHERE
+			 	<choose>
+			 	<!-- #{}'X'조건식에서 쓸 때에는 그냥 받아온 이름 입력
+			 		동적SQL이라 함 -->
+			 		<when test="kind == 'title'">TITLE</when>
+			 		<when test="kind == 'writer'">WRITER</when>
+					<otherwise>CONTENTS</otherwise>
+			 	</choose> 
+			LIKE '%'||#{search}||'%'
+	</sql>
+	
+	<select id="getList"  resultType="QnaDTO" parameterType="Pager">
+		SELECT * FROM 
+		(SELECT ROWNUM R,N.* FROM 
+		(SELECT * FROM QNA
+			<include refid="search"></include>
+		 ORDER BY REF DESC, STEP ASC) N)			
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		SELECT COUNT(NUM) FROM QNA
+		<include refid="search"></include>		
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">
-		SELECT * FROM QNA WHERE NUM = #{num}							
+		SELECT * FROM Qna WHERE NUM = #{num}							
 	</select>
 	
-	<insert id="setAdd" parameterType="QnaDTO">
-		INSERT INTO QNA VALUES (BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0,0,0,0)
+	
+	<insert id="setAdd" parameterType="BoardDTO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{num}, 0, 0)
 	</insert>
 	
-	<update id="setUpdate" parameterType="QnaDTO">
+	<update id="setUpdate" parameterType="BoardDTO">
 		UPDATE QNA SET TITLE=#{title},CONTENTS=#{contents} WHERE NUM=#{num}
 	</update>
 	
-	<delete id="setDelete" parameterType="QnaDTO">
+	<delete id="setDelete" parameterType="BoardDTO">
 		DELETE QNA WHERE NUM=#{num}
 	</delete>
-		    
+	
 </mapper>
