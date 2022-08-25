@@ -21,9 +21,9 @@ public class NoticeService implements BoardService {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
-			pager.getRowNum();
 			Long totalCount=noticeDAO.getCount();
 			pager.getNum(totalCount);
+			pager.getRowNum();
 		
 		
 //		System.out.println("Service Page :"+page);

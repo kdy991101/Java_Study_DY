@@ -17,6 +17,11 @@ public class Pager {
 	private Long perPage;
 	private Long perBlock;
 	
+	//이전Blockㅣ의 유뮤를 판단-이전 블럭이 있으면 true 없으면  false 
+	private boolean pre;
+	//다음 Block의 유무-다름블럭이 읶으면 true 없으면 false
+	private boolean next;
+	
 	public Pager() {
 		this.perPage=10L;
 		this.perBlock=5L;
@@ -34,8 +39,15 @@ public class Pager {
 		public void getNum(Long totalCount)throws Exception{
 		//2.totalCount로 totalPage구하기
 		Long totalPage = totalCount/this.getPerPage();
-		if(totalPage%this.getPerPage() != 0) {
+		if(totalCount%this.getPerPage() != 0) {
 			totalPage++;
+		}
+		
+		//2_1 totalPage보다 pags가 더 클 경우
+		System.out.println(this.getPerPage());
+		System.out.println(totalPage);
+		if(this.getPage()>totalPage) {
+			this.setPage(totalPage);
 		}
 		
 		//3.위에서 구한 totalPage를 이용해서 totalBock구하기
@@ -53,12 +65,26 @@ public class Pager {
 		//5.위애서 구한 curBlock으로 startNum,lastNum계산
 		this.startNum = (curBlock-1)*this.getPerBlock()+1;
 		this.lastNum = curBlock*this.getPerBlock();
+		
+		//6.현재 블럭이 마지막 블럭일 때 (현재Block=totalBlock)
+		if(curBlock == totalBlock) {
+			this.lastNum=totalPage;
+		}
+		
+		//7. 이전,다음 블럭의 유뮤
+		if(curBlock>1) {
+			pre = true;
+		}
+		
+		if(curBlock<totalBlock) {
+			next=true;
+		}
 	}
 	
 	
 	//=============================
 	public Long getPage() {
-		if(this.page==null) {
+		if(this.page==null || this.page < 1) {
 			this.page=1L;
 		}
 		return page;
@@ -109,6 +135,27 @@ public class Pager {
 	public void setPerBlock(Long perBlock) {
 		this.perBlock = perBlock;
 	}
+
+	//is로 시작하는 메서드는 true,false로 리턴된다 getter이지만 is로 되어있음
+	public boolean isPre() {
+		return pre;
+	}
+
+
+	public void setPre(boolean pre) {
+		this.pre = pre;
+	}
+
+
+	public boolean isNext() {
+		return next;
+	}
+
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+	
 	
 
 	
