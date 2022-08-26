@@ -54,15 +54,19 @@ public class NoticeService implements BoardService {
 		  
 		  //저장할 폴더의 정보를 가지는 자바 객체를 만들어줘야 함
 		  File file = new File(realPath);//v
-		 System.out.println("File : " + file.exists());//v
+		  System.out.println("File : " + file.exists());//v
 		 
+		  if(!file.exists()) {		
+			  file.mkdirs();
+		  }
 		 
-		 if(!file.exists()) {
-				
-			   file.mkdirs();
-		   }
 		 for(MultipartFile f : files) {
 		  
+			 if(f.isEmpty()) {
+				 continue;
+			 }
+		 }
+			 
 		 //카피해서 넣는작업 중복되지 않는 파일명을 저장하기 위해 calender를 이용한 것
 		  String fileName=UUID.randomUUID().toString();
 		   System.out.println("file name : " + fileName);
@@ -77,7 +81,7 @@ public class NoticeService implements BoardService {
 		   file = new File(file, fileName);
 		   
 		   		   
-		 }
+		 
 		return result;
 	}
 
