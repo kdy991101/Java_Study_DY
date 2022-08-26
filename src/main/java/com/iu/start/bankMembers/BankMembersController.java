@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.bankAccount.BankAccountDTO;
@@ -46,15 +47,15 @@ public class BankMembersController {
 	
 	//post
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)//post방식만 받겠다~
-	public String join(BankMembersDTO bankMembersDTO) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
 		System.out.println("post Join실행");
-
-			int result  = bankMembersService.setJoin(bankMembersDTO);
-			if(result == 1) {
-				System.out.println("성공");
-			} else {
-				System.out.println("실패");
-			}
+			System.out.println("파일명" + photo);//파일 명이 옴
+			System.out.println("업로드시 파일명" + photo.getOriginalFilename());//업로드할 떄 이름
+			System.out.println("업로드할 때 파라미터 이름" + photo.getName());
+			System.out.println("파일의 크기를 말함" + photo.getSize());
+			
+			int result  = bankMembersService.setJoin(bankMembersDTO, photo);
+			
 		return "member/login";
 	}
 	

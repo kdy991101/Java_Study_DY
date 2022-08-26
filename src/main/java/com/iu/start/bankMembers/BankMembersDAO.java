@@ -13,6 +13,8 @@ public class BankMembersDAO implements MembersDAO{
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.start.bankMembers.BankMembersDAO."; 
 	
+	
+	
 	public BankMembersDTO getlogin(BankMembersDTO bankMembersDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getlogin",bankMembersDTO);
 	}
@@ -33,5 +35,13 @@ public class BankMembersDAO implements MembersDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"getMyPage",bankMembersDTO);
 	}
+
+
+	@Override
+	public int setAddFile(BankMembersFileDTO bankMembersFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"setAddFile", bankMembersFileDTO);
+	}
+
 
 }

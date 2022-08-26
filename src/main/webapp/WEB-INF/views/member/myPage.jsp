@@ -57,6 +57,10 @@
 		
 		</tbody>
 	</table>
+	<div class="row">
+		<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">
+				
+	</div>
 </section>
 </body>
 </html>

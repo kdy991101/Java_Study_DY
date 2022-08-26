@@ -6,6 +6,11 @@
     
 <mapper namespace="com.iu.start.bankMembers.BankMembersDAO">
 
+<insert id="setAddFile" parameterType="BankMembersFileDTO">
+	INSERT  INTO MEMBERFILE (FILENUM, FILENAME, ORINAME, USERNAME)
+	 VALUES(FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{userName})
+</insert>
+
 <select id="getlogin" parameterType="BankMembersDTO" resultType="BankMembersDTO">
 SELECT USERNAME, NAME FROM MEMBERS WHERE USERNAME=#{username} AND PASSWORD=#{password}
 </select>
@@ -20,17 +25,21 @@ SELECT * FROM MEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME 
 </select>
 
 <select id="getMyPage" parameterType="BankMembersDTO" resultMap="getMyPageResult">
-		SELECT USERNAME, NAME, EMAIL, PHONE, ACCOUNTNUM, BOOKNAME, ACCOUNTDATE
+		 SELECT MB.USERNAME, NAME, EMAIL, PHONE, FILENUM, FILENAME, ACCOUNTNUM, BOOKNAME, ACCOUNTDATE
 		FROM MEMBERS MB
+    
+			LEFT JOIN
+			MEMBERFILE MF
+			ON MB.USERNAME = MF.USERNAME
 		
-		    INNER JOIN
+		    LEFT JOIN
 		    BANKACCOUNT BA
-		    USING (USERNAME)
+		    ON MB.USERNAME = BA.USERNAME
 		    
-		    INNER JOIN
+		    LEFT JOIN
 		    BANKBOOK BB
-		    USING (BOOKNUM)
-	    WHERE USERNAME=#{username}
+		    ON BA.BOOKNUM = BB.BOOKNUM
+	        WHERE MB.USERNAME=#{username}
 </select>
 
 		<resultMap type="BankMembersDTO" id="getMyPageResult">
@@ -39,16 +48,22 @@ SELECT * FROM MEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME 
 			<result column="EMAIL" property="email"/>
 			<result column="PHONE" property="phone"/>
 			
-			<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO">
-				<id column="ACCOUNTNUM" property="accountNum"/>
-				<result column="ACCOUNTDATE" property="accountDate"/>
+			<association property="bankMembersFileDTO" javaType="BankMembersFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+				<result column="FILENAME" property="fileName"/>
+			</association>
+			
+			<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO"><!-- 리스트로 받는 것 -->
+				<id column="ACCOUNTNUM" property="accountNum"/><!-- 프라이머리키 -->
+				<result column="ACCOUNTDATE" property="accountDate"/><!-- 그 외 나머지 -->
 				
-				<association property="bankBookDTO" javaType="BankBookDTO">
+				<association property="bankBookDTO" javaType="BankBookDTO"><!-- 하나만 받는것..? -->
 					<result column="BOOKNAME" property="bookName"/>
 				</association>
 				
-			</collection>
 			
+			
+			</collection>
 		<!-- ofType 제네릭을 뭏어보는 것 -->
 		</resultMap>
 

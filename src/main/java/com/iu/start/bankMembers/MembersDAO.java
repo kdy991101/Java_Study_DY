@@ -10,4 +10,5 @@ public interface MembersDAO {
 			
 			public BankMembersDTO getMyPage(BankMembersDTO bankMembersDTO) throws Exception;
 
+			int setAddFile(BankMembersFileDTO bankMembersFileDTO) throws Exception;
 }

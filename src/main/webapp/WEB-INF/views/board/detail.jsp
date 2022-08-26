@@ -37,7 +37,11 @@
 
 
   <label for="exampleFormControlTextarea1" class="form-label"><b>내용</b></label>
-         <textarea class="form-control" readonly id="exampleFormControlTextarea1" rows="20">${requestScope.boardDTO.contents}</textarea>
+     <tbody>
+     <tr>
+      <td>${requestScope.boardDTO.contents}</td>
+      </tr>
+      </tbody>
 
 
 		<a class="btn btn-secondary" href="./update.iu?num=${boardDTO.num}" role="update">수정</a>
