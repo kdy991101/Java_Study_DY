@@ -96,7 +96,7 @@ public class BankMembersService {
 			   	
 			  }//isempty 끝
 			  
-			   return result;
+			   return 0;
 	};
 	
 	//검색어를 입력해서 ID를 찾기 abc 순으로

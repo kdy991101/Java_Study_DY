@@ -68,9 +68,7 @@ public class NoticeController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile[] files)throws Exception{
 		System.out.println("postAdd실행");
-		System.out.println("파일명 : "+files);
-		System.out.println("업로드시 파일명" + files.toString());//업로드할 떄 이름
-		System.out.println("파일의 크기를 말함" + files.length);
+		
 		ModelAndView mv = new ModelAndView();
 		
 		int result = noticeService.setAdd(boardDTO, files);
