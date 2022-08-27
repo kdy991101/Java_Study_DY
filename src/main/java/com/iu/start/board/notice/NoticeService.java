@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
 import com.iu.start.util.Pager;
 
@@ -45,7 +46,7 @@ public class NoticeService implements BoardService {
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
 		// TODO Auto-generated method stub
-		int result = noticeDAO.setAdd(boardDTO);
+		//int result = noticeDAO.setAdd(boardDTO);
 		
 		//저장할 폴더의 실제경로를 반환
 		//realpath=>실제 경로
@@ -55,7 +56,8 @@ public class NoticeService implements BoardService {
 		  //저장할 폴더의 정보를 가지는 자바 객체를 만들어줘야 함
 		  File file = new File(realPath);//v
 		  System.out.println("File : " + file.exists());//v
-		 
+			  
+		  
 		  if(!file.exists()) {		
 			  file.mkdirs();
 		  }
@@ -65,24 +67,32 @@ public class NoticeService implements BoardService {
 			 if(f.isEmpty()) {
 				 continue;
 			 }
-		 }
 			 
 		 //카피해서 넣는작업 중복되지 않는 파일명을 저장하기 위해 calender를 이용한 것
-		  String fileName=UUID.randomUUID().toString();
+		   String fileName=UUID.randomUUID().toString();
 		   System.out.println("file name : " + fileName);
 		   
 		   Calendar ca = Calendar.getInstance();
 		   Long time = ca.getTimeInMillis();
 		   System.out.println("time : " + time);
 		  
-		   fileName=fileName+"_"+files.toString();
+		   fileName=fileName+"_"+f.getOriginalFilename();
 		   System.out.println("확장자 file name : " + fileName);
 		   
 		   file = new File(file, fileName);
 		   
-		   		   
-		 
-		return result;
+		   	f.transferTo(file);
+		   	
+		   	
+		   	//f.transferTo(new File(file, fileName));가능
+		   	BoardFileDTO boardFileDTO = new BoardFileDTO();
+		   	boardFileDTO.setFileName(fileName);
+		   	boardFileDTO.setOriName(f.getOriginalFilename());
+		   	boardFileDTO.setNum(boardDTO.getNum());
+		   	noticeDAO.setAddFile(boardFileDTO);
+		
+		 }
+		return 0;
 	}
 
 	@Override

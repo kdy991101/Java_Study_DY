@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.util.Pager;
 
 @Repository
@@ -53,12 +54,13 @@ public class NoticeDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
 	}
-//
-//	@Override
-//	public int setAddFile(NoticeFileDTO noticeFileDTO) throws Exception {
-//		// TODO Auto-generated method stub
-//		return sqlSession.insert(NAMESPACE+"setAddFile", noticeFileDTO);
-//	}
+
+	@Override
+	public int setAddFile(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.insert(NAMESPACE+"setAddFile", boardFileDTO);
+	}
+
 
 }
 ;

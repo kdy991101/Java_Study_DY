@@ -1,5 +1,7 @@
 package com.iu.start.board.notice;
 
-public class NoticeFileDTO {
+import com.iu.start.board.impl.BoardFileDTO;
+
+public class NoticeFileDTO extends BoardFileDTO {
 
 }
