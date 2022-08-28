@@ -39,7 +39,7 @@ public class NoticeController {
 		
 		System.out.println(pager.getPage());
 		System.out.println("getList실행");
-		System.out.println(pager.getKind());
+		System.out.println("pager.getKind(): " + pager.getKind());
 		System.out.println(pager.getSearch());
 
 		mv.addObject("list", ar);
