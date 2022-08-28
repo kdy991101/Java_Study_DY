@@ -60,7 +60,7 @@ public class NoticeController {
 	
 	//글 작성
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
-	public String setAdd(Model model)throws Exception{
+	public String setAdd()throws Exception{
 		System.out.println("getAdd실행");
 		
 		return "board/add";
