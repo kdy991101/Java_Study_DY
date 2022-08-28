@@ -33,12 +33,12 @@
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailMap">
-		SELECT NT.NUM, NT.TITLE, NT.CONTENTS, NT.WRITER, NT.REGDATE, NT.HIT, NF.FILENUM, NF.FILENAME 
-	    FROM NOTICE NT
-		LEFT JOIN
-		NOTICEFILE NF
-		ON NT.NUM = NF.NUM
-		WHERE NT.NUM = #{num}						
+		SELECT NT.*, NF.FILENUM, NF.FILENAME 
+     FROM NOTICE NT
+      LEFT JOIN
+      NOTICEFILE NF
+      ON NT.NUM = NF.NUM
+      WHERE NT.NUM = #{num}						
 	</select>
 	
 	<resultMap type="NoticeDTO" id="getDetailMap">
@@ -73,7 +73,7 @@
 		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
 	
-    <insert id="setAddFile" parameterType="NoticeFileDTO">
+    <insert id="setAddFile" parameterType="BoardFileDTO">
 	   INSERT  INTO NOTICEFILE (FILENUM, FILENAME, ORINAME, NUM)
 	    VALUES(FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
      </insert>

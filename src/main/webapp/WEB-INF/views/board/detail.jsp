@@ -34,19 +34,21 @@
 			</tr>
 		</tbody>
 		
-</table>
+	</table>             			
+	
+	
+	  <label for="exampleFormControlTextarea1" class="form-label"><b>내용</b></label>
+		<tbody>
+			<tr>
+				<td>${requestScope.boardDTO.contents}</td>
+			</tr>
+		</tbody>
 
-
-  <label for="exampleFormControlTextarea1" class="form-label"><b>내용</b></label>
-     <tbody>
-     <tr>
-      <td>${requestScope.boardDTO.contents}</td>
-      </tr>
-      </tbody>
-      
-      <div class="row">
-		<img alt="" src="../resources/upload/notice/${boardDTO.boardFileDTOs.num}">		
-	</div>
+		<c:forEach items="${detail.boardFileDTOs}" var="dto">
+			<div class="row">
+				<img alt="" src="../resources/upload/notice/${dto.fileName}">
+			</div>
+		</c:forEach>
 
 
 		<a class="btn btn-secondary" href="./update.iu?num=${boardDTO.num}" role="update">수정</a>

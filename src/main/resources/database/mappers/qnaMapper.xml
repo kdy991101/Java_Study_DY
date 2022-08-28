@@ -44,8 +44,34 @@
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">
-		SELECT * FROM Qna WHERE NUM = #{num}							
+	SELECT Q.*,QF.FILENUM,QF.FILENAME
+	FROM QNA Q
+	LEFT JOIN 
+	QNAFILE QF
+	ON Q.NUM = QF.NUM
+	WHERE Q.NUM=#{num}
 	</select>
+	
+	<resultMap type="QnaDTO" id="getDetailMap">
+	<id column="NUM" property="num"/>
+	<result column="TITLE" property="title"/>
+	<result column="CONTENTS" property="contents"/>
+	<result column="WRITER" property="writer"/>
+	<result column="REGDATE" property="regDate"/>
+	<result column="HIT" property="hit"/>
+	<result column="REF" property="ref"/>
+	<result column="DEPTH" property="depth"/>
+	
+	<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+	<id column="FILENUM" property="fileNum"/>
+	<result column="FILENAME" property="fileName"/>
+	</collection>
+	
+	</resultMap>
+		
+	
+	
+	
 	
 	
 	<insert id="setAdd" parameterType="BoardDTO">
@@ -62,5 +88,10 @@
 	<delete id="setDelete" parameterType="BoardDTO">
 		DELETE QNA WHERE NUM=#{num}
 	</delete>
+	
+	<insert id="setAddFile" parameterType="BoardFileDTO">
+	   INSERT  INTO QNAFILE (FILENUM, FILENAME, ORINAME, NUM)
+	    VALUES(FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
+     </insert>
 	
 </mapper>
