@@ -5,6 +5,7 @@
 		    
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
 
+
 	<sql id="search">
 		WHERE
 			 	<choose>
@@ -31,13 +32,37 @@
 		<include refid="search"></include>		
 	</select>
 	
-	<select id="getDetail" parameterType="BoardDTO" resultType="NoticeDTO">
-		SELECT * FROM NOTICE WHERE NUM = #{num}							
+	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailMap">
+		SELECT NT.NUM, NT.TITLE, NT.CONTENTS, NT.WRITER, NT.REGDATE, NT.HIT, NF.FILENUM, NF.FILENAME 
+	    FROM NOTICE NT
+		LEFT JOIN
+		NOTICEFILE NF
+		ON NT.NUM = NF.NUM
+		WHERE NT.NUM = #{num}						
 	</select>
 	
+	<resultMap type="NoticeDTO" id="getDetailMap">
+		<id column="NUM" property="num"/>
+		<result column="TITLE" property="title"/>
+		<result column="CONTENTS" property="contents"/>
+		<result column="WRITER" property="writer"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="HIT" property="hit"/>
+		
+		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+</resultMap>	
 	
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL,#{title},#{contents},#{writer},SYSDATE,0)
+	
+		<selectKey keyProperty="num" order="BEFORE" resultType="long">
+				SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+		INSERT INTO NOTICE VALUES (#{num},#{title},#{contents},#{writer},SYSDATE,0)
+	
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardDTO">
@@ -47,5 +72,10 @@
 	<delete id="setDelete" parameterType="BoardDTO">
 		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
+	
+    <insert id="setAddFile" parameterType="NoticeFileDTO">
+	   INSERT  INTO NOTICEFILE (FILENUM, FILENAME, ORINAME, NUM)
+	    VALUES(FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
+     </insert>
 	
 </mapper>
