@@ -59,7 +59,7 @@
 	<insert id="setAdd" parameterType="BoardDTO">
 	
 	<!-- 인서트를하기 전에 얘를 실행하고 결과물을 num이라는 변수에 집어넣는다.. -->
-		<selectKey keyProperty="num" order="BEFORE" resultType="long">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
 				SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		

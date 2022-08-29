@@ -58,7 +58,7 @@ public class QnaService implements BoardService{
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("insert전 : "+boardDTO.getNum());
 		int result = qnaDAO.setAdd(boardDTO);
