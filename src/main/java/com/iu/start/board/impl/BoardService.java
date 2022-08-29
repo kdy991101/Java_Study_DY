@@ -2,6 +2,8 @@ package com.iu.start.board.impl;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.util.Pager;
@@ -20,7 +22,7 @@ public interface BoardService {
 	//글 삭제
 	public int setDelete(BoardDTO boardDTO)throws Exception;
 	//글 작성
-	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception;
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception;
 	
 
 }

@@ -44,11 +44,13 @@
 			</tr>
 		</tbody>
 
-		<c:forEach items="${detail.boardFileDTOs}" var="dto">
 			<div class="row">
-				<img alt="" src="../resources/upload/notice/${dto.fileName}">
-			</div>
+		<c:forEach items="${boardDTO.boardFileDTOs}" var="fileDTO">
+		<p>
+			<a href="../resources/upload/${board}/${fileDTO.fileName}">${fileDTO.oriName}</a>
+		</p>
 		</c:forEach>
+			</div>
 
 
 		<a class="btn btn-secondary" href="./update.iu?num=${boardDTO.num}" role="update">수정</a>

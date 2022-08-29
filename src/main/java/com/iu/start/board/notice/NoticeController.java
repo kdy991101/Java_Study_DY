@@ -2,6 +2,9 @@ package com.iu.start.board.notice;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +29,7 @@ public class NoticeController {
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "공지사항";
+		return "notice";
 	}
 	//컨트롤러의 메서드의 리턴은 결론적으로 mv로 됨
 	
@@ -66,12 +69,12 @@ public class NoticeController {
 		return "board/add";
 	}
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile[] files)throws Exception{
+	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session)throws Exception{
 		System.out.println("postAdd실행");
 		
 		ModelAndView mv = new ModelAndView();
 		
-		int result = noticeService.setAdd(boardDTO, files);
+		int result = noticeService.setAdd(boardDTO, files, session.getServletContext());
 		mv.setViewName("redirect:./list.iu");
 		return mv;
 	}

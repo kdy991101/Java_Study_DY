@@ -3,6 +3,7 @@ package com.iu.start.bankMembers;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -47,14 +48,14 @@ public class BankMembersController {
 	
 	//post
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)//post방식만 받겠다~
-	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, HttpSession session) throws Exception {
 		System.out.println("post Join실행");
 			System.out.println("파일명" + photo);//파일 명이 옴
 			System.out.println("업로드시 파일명" + photo.getOriginalFilename());//업로드할 떄 이름
 			System.out.println("업로드할 때 파라미터 이름" + photo.getName());
 			System.out.println("파일의 크기를 말함" + photo.getSize());
 			
-			int result  = bankMembersService.setJoin(bankMembersDTO, photo);
+			int result  = bankMembersService.setJoin(bankMembersDTO, photo, session.getServletContext());
 			
 		return "member/login";
 	}
