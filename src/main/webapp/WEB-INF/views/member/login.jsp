@@ -10,7 +10,7 @@
 </head>
 <body>
     <c:import url="../template/header.jsp"></c:import>
- 			<form action="./login.iu" method="post">
+ 			<form action="./login.iu" method="post" id="memberForm">
  
  	<section class="container-fluid col-lg-2 mt-5">
 <h3>로그인</h3>
@@ -18,13 +18,13 @@
  			
 				  <div class="mb-3">
 				   
-				    <input type="text" placeholder="아이디를 입력해주세요"class="form-control" name="username">
+				    <input type="text" placeholder="아이디를 입력해주세요"class="form-control" name="username" id="username">
 				  </div>
 				  <div class="mb-3">
 	
-				    <input type="password"  placeholder="비밀번호를 입력해주세요" class="form-control" name="password">
+				    <input type="password"  placeholder="비밀번호를 입력해주세요" class="form-control" name="password" id="password">
 				  </div>
-				  <button type="submit" class="btn btn-secondary">로그인</button>
+				  <button type="button" class="btn btn-secondary" id="memberButton">로그인</button>
 
  		</div>
  	</section>   
@@ -50,5 +50,6 @@
         </div> -->
     <c:import url="../template/footer.jsp"></c:import>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="/resources/js/member.js"></script>
 </body>
 </html>
