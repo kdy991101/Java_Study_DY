@@ -16,11 +16,11 @@
 	<div class="row">
 			<form action="./list.iu"  class="row row-cols-lg-auto g-3 align-items-center">
 			  <div class="col-12">
-			    <label class="visually-hidden" for="kind">Kind</label>
+			    <label class="visually-hidden" for="kind" id="select">Kind</label>
 			    <select  name="kind" class="form-select" id="kind">
-			      <option value="contents">내용</option>
-			      <option value="title">제목</option>
-			      <option value="writer">작성자</option>
+			      <option class="kinds" value="contents">contents내용</option>
+			      <option class="kinds" value="title">title제목</option>
+			      <option class="kinds" value="writer">writer작성자</option>
 			    </select>
 			    <!-- kind란 이름으로 넘어감 -->
 			  </div>
@@ -28,7 +28,7 @@
 			  <div class="col-12">
 			    <label class="visually-hidden" for="search">검색어</label>
 			    <div class="input-group">
-			      <input type="text" name="search" var="" class="form-control" placeholder="검색어를 입력해 주세요">
+			      <input type="text" name="search" value="${param.search}" var="" class="form-control" placeholder="검색어를 입력해 주세요">
 			    </div>
 			  </div>
 			
@@ -100,7 +100,19 @@
 			</nav>
 		</section>
  			<c:import url="../template/footer.jsp"></c:import>
-			 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
- 		</script>
+			 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+		<script src="/resources/js/board.js"></script>
+
+		<script>
+			let k = '${param.kind}'; 
+			const kinds = document.getElementsByClassName("kinds");
+
+			for(let i=0; i<kinds.length; i++){
+				if(kinds[i].value == k){
+					kinds[i].selected=true;
+					break;
+				}
+			}
+		</script>
 	</body>
 </html>
