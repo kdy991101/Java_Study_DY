@@ -13,9 +13,8 @@ memberButton.addEventListener("click", function(){
     if(username.value.length<1 || password.value.length<1){
         alert("id,pw를 확인해주세요");
     }
+    
 })
-
-
 
 //---------------------강사님
 // memberButton.addEventListener("click", function(){
