@@ -10,26 +10,34 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-	<section class="container-fluid col-lg-2 mt-5">
+	<section class="container-fluid col-lg-4 mt-5">
 	<h3>회원가입</h3>
 	<div class="row">
 	
-	<form action="join.iu" method="post" enctype="multipart/form-data">
+	<form action="join.iu" method="post" enctype="multipart/form-data" id="joinForm">
 	
 			<div class="mb-3">
-		  		<input type="text" placeholder="아이디를 입력해주세요"class="form-control" name="username">
+		  		<input type="text" placeholder="아이디를 입력해주세요"class="form-control" name="username" id="username">
+				<div id="d1"></div>
 			</div>
 			
 			<div class="mb-3">
-		  		<input type="password" placeholder="비밀번호를 입력해주세요"class="form-control" name="password">
+		  		<input type="password" placeholder="비밀번호를 입력해주세요"class="form-control" name="password" id="password">
+				<div id="d2"></div>
+			</div>
+			<div class="mb-3">
+				<input type="Password" placeholder="비밀번호 재확인"class="form-control" name="inputPassword" id="inputPassword">
+				<div id="d3"></div>
 			</div>
 			
 			<div class="mb-3">
-		  		<input type="text" placeholder="이름을 입력해주세요"class="form-control" name="name">
+		  		<input type="text" placeholder="이름을 입력해주세요"class="form-control" name="name" id="name1">
+				<div id="d4"></div>
 			</div>
 			
 			<div class="mb-3">
-			  <input type="tel" placeholder="전화번호를 입력해주세요"class="form-control" name="phone">
+			  <input type="tel" placeholder="전화번호를 입력해주세요"class="form-control" name="phone" id="phone">
+				<div id="d5"></div>
 			</div>
 			
 			<div>
@@ -38,14 +46,19 @@
 			</div>
 			
 			<div class="mb-3">
-  				<input type="email" placeholder="이메일을 입력해주세요"class="form-control" name="email">
+  				<input type="email" required placeholder="이메일을 입력해주세요"class="form-control" name="email" id="email">
+				<div id="d6"></div>
 			</div>
 			
-			 <button type="submit" class="btn btn-secondary">로그인</button>
+			 <button type="submit"  id="joinButton" class="btn btn-secondary">로그인</button>
 
     </form>
 	</div>
 </section>
-<script src="/resources/"></script>
+<script src="/resources/js/member_join.js"></script>
+<!-- <script src="/resources/js/member.js"></script> -->
+<script>
+	joinCheck();
+</script>
 </body>
 </html>
