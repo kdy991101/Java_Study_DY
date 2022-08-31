@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,6 +59,11 @@ public class BankMembersController {
 			int result  = bankMembersService.setJoin(bankMembersDTO, photo, session.getServletContext());
 			
 		return "member/login";
+	}
+	@GetMapping("check.iu")
+	public String getcheck() throws Exception{
+		System.out.println("get check실행");
+		return "member/check";
 	}
 	
 	@RequestMapping(value = "search.iu", method = RequestMethod.GET)

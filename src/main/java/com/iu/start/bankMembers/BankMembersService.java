@@ -38,6 +38,8 @@ public class BankMembersService {
 		return bankMembersDAO.getlogin(bankMembersDTO);
 	}
 	
+	
+	
 	//bankMembers 회원가입
 	public int setJoin(BankMembersDTO bankMembersDTO, MultipartFile photo, ServletContext servletContext)throws Exception{
 		int result =bankMembersDAO.setJoin(bankMembersDTO);

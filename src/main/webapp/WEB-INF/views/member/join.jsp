@@ -46,5 +46,6 @@
     </form>
 	</div>
 </section>
+<script src="/resources/"></script>
 </body>
 </html>
