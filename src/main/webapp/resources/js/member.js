@@ -46,13 +46,23 @@ memberButton.addEventListener("click", function(){
 // //-------------------------
 
 
-//============================================================================
+//==========================================================================약관 동의
 
     const all = document.getElementById("all");
-    const cb = document.getElementsByClassName("cb");
+    // const all = document.querySelector("#all");//아이디로 가져올떄,,,?
+    // const cb = document.getElementsByClassName("cb");//class이름으로 받아옴
+    const cb = document.querySelectorAll(".cb");//실제 배열
     const req = document.getElementsByClassName("req");
     const join = document.getElementById("join");
     const frm = document.getElementById("frm");
+//==0902
+    console.log("forEach");
+    cb.forEach(function(){
+        console.log(v);
+    });
+    //----------------
+
+//==
 
     //  join.addEventListener("click", function(){
     //      if(all.checked){
