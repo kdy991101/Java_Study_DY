@@ -36,15 +36,15 @@
 			
 			<div>
 				<p>이미지를 선택하세요</p>
-				<p><input class="form-control" type="file" aria-label=".form-control-lg example" name="files" id="files"></p>
+				<p><input class="form-control"  type="file" aria-label=".form-control-lg example" name="files" id="files"></p>
 			</div>
 			
 			<div>
-				<p><input class="form-control" type="file" aria-label=".form-control-lg example" name="files" id="files"></p>
+				<p><input class="form-control"  type="file" aria-label=".form-control-lg example" name="files" id="files"></p>
 			</div>
 			
 			<div>
-				<p><input class="form-control" type="file" aria-label=".form-control-lg example" name="files" id="files"></p>
+				<p><input class="form-control"type="file" aria-label=".form-control-lg example" name="files" id="files"></p>
 			</div>
 			
 			<div class="mb-3">
@@ -61,3 +61,4 @@
 	</script>	
 </body>
 </html>
+
