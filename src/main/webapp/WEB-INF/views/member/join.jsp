@@ -18,26 +18,26 @@
 	
 			<div class="mb-3">
 		  		<input type="text" placeholder="아이디를 입력해주세요"class="form-control" name="username" id="username">
-				<div id="d1"></div>
+				<div id="inputUserNameResult"></div>
 			</div>
 			
 			<div class="mb-3">
 		  		<input type="password" placeholder="비밀번호를 입력해주세요"class="form-control" name="password" id="password">
-				<div id="d2"></div>
+				<div id="inputPasswordResult"></div>
 			</div>
 			<div class="mb-3">
 				<input type="Password" placeholder="비밀번호 재확인"class="form-control" name="inputPassword" id="inputPassword">
-				<div id="d3"></div>
+				<div id="inputPasswordCheckResult"></div>
 			</div>
 			
 			<div class="mb-3">
 		  		<input type="text" placeholder="이름을 입력해주세요"class="form-control" name="name" id="name1">
-				<div id="d4"></div>
+				<div id="inputNameResult"></div>
 			</div>
 			
 			<div class="mb-3">
 			  <input type="tel" placeholder="전화번호를 입력해주세요"class="form-control" name="phone" id="phone">
-				<div id="d5"></div>
+				<div id="inputPhoneResult"></div>
 			</div>
 			
 			<div>
@@ -47,7 +47,7 @@
 			
 			<div class="mb-3">
   				<input type="email" required placeholder="이메일을 입력해주세요"class="form-control" name="email" id="email">
-				<div id="d6"></div>
+				<div id="inputEmailResult"></div>
 			</div>
 			
 			 <button type="submit"  id="joinButton" class="btn btn-secondary">로그인</button>
