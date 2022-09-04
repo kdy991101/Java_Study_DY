@@ -56,10 +56,10 @@ memberButton.addEventListener("click", function(){
     const join = document.getElementById("join");
     const frm = document.getElementById("frm");
 //==0902
-    console.log("forEach");
-    cb.forEach(function(){
-        console.log(v);
-    });
+    // console.log("forEach");
+    // cb.forEach(function(){
+    //     console.log(v);
+    // });
     //----------------
 
 //==
