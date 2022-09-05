@@ -33,10 +33,26 @@ public class BankMembersController {
 	}
 	
 	@RequestMapping(value="login.iu", method=RequestMethod.POST)
-	public String login(HttpSession session, BankMembersDTO bankMembersDTO) throws Exception{
+	public ModelAndView login(HttpSession session, BankMembersDTO bankMembersDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		bankMembersDTO = bankMembersService.getlogin(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
-		return "redirect:../";
+		
+		int result = 0;
+		String message = "로그인 실패";
+		String url="./login.iu";
+		if(bankMembersDTO != null) {//null이 아니라면
+			message = "로그인 성공";
+			result = 1;
+			url="../";
+		}
+//		result가 0이면 로그인 성공 1이면 실패
+		
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
+		return mv;
 	}
 	
 //메서드명 join 죽소는 멤버의 조인이라는 주소가 들어오면 실행 선언 

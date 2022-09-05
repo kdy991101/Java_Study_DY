@@ -71,11 +71,19 @@ public class NoticeController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session)throws Exception{
 		System.out.println("postAdd실행");
-		
 		ModelAndView mv = new ModelAndView();
-		
 		int result = noticeService.setAdd(boardDTO, files, session.getServletContext());
-		mv.setViewName("redirect:./list.iu");
+		
+		String message = "글 등록 실패";
+		if(result > 0) {
+			message = "글 등록 성공";
+	}
+	
+		mv.addObject("message", message);
+		mv.addObject("result", result);
+		mv.addObject("url", "list.iu");
+		mv.setViewName("common/result");
+		
 		return mv;
 	}
 	

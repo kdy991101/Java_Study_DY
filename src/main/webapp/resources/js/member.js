@@ -4,6 +4,10 @@ const memberButton = document.getElementById("memberButton");
 const username= document.getElementById("username");
 const password = document.getElementById("password");
 
+
+
+
+
 memberButton.addEventListener("click", function(){
     console.log("Button Click");
     memberForm.submit();
