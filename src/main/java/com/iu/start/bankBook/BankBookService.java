@@ -34,6 +34,13 @@ public class BankBookService {
 	public int setDelete(BankBookDTO bankBookDTO) throws Exception {
 		return bankBookDAO.setDelete(bankBookDTO);
 	}
+	//============================================================Comment
+	@Autowired
+	private BankBookCommentDAO bankBookCommentDAO;
+	
+	public int setCommentAdd(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+		return bankBookCommentDAO.setCommentAdd(bankBookCommentDTO);
+	}
 	
 	}
 
