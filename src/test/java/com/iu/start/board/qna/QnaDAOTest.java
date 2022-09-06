@@ -15,7 +15,7 @@ import cou.iu.start.MyAbstractTest;
 
 public class QnaDAOTest  extends MyAbstractTest{
 	
-	@Autowired
+	//@Autowired
 	private QnaDAO qnaDAO;
 	
 //	@Test

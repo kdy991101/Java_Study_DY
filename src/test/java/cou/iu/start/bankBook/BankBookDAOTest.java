@@ -17,7 +17,7 @@ import cou.iu.start.MyAbstractTest;
 public class BankBookDAOTest extends MyAbstractTest{
 	
 
-	@Autowired//DAO에생성된 객체를 주입
+	//@Autowired//DAO에생성된 객체를 주입
 	private BankBookDAO bankBookDAO;
 	
 	@Test
@@ -25,22 +25,22 @@ public class BankBookDAOTest extends MyAbstractTest{
 	 List<BankBookDTO> ar = bankBookDAO.getList();
 	}
 	
-	@Test
-	public void setBankBookTest() throws Exception{
-		BankBookDTO bankBookDTO = new BankBookDTO();
-		Calendar ca = Calendar.getInstance();	
-		bankBookDTO.setBookName("--");
-		bankBookDTO.setBookNum(ca.getTimeInMillis());
-		bankBookDTO.setBookRate(1.1);
-		bankBookDTO.setBookSale(1);
-		bankBookDTO.B
-		
-	}
+//	@Test
+//	public void setBankBookTest() throws Exception{
+//		BankBookDTO bankBookDTO = new BankBookDTO();
+//		Calendar ca = Calendar.getInstance();	
+//		bankBookDTO.setBookName("--");
+//		bankBookDTO.setBookNum(ca.getTimeInMillis());
+//		bankBookDTO.setBookRate(1.1);
+//		bankBookDTO.setBookSale(1);
+//		bankBookDTO.B
+//		
+//	}
 	
-	@Test
-	public void getDetailTest() throws Exception{
-		BankBookDTO bankBookDTO = bankBookDAO.getDetail();
-	}
+//	@Test
+//	public void getDetailTest() throws Exception{
+//		BankBookDTO bankBookDTO = bankBookDAO.getDetail();
+//	}
 	
 	
 	

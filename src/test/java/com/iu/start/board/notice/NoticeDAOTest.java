@@ -15,7 +15,7 @@ import cou.iu.start.MyAbstractTest;
 
 public class NoticeDAOTest extends MyAbstractTest {
 	
-	@Autowired
+	//@Autowired
 	private NoticeDAO noticeDAO;
 	
 //	@Test
@@ -32,12 +32,12 @@ public class NoticeDAOTest extends MyAbstractTest {
 		assertNotEquals(0, noticeDTO);
 	}
 	
-	@Test
-	public void getCountTest()throws Exception{
-		long count = noticeDAO.getCount();
-		assertEquals(206L, count);
-	
-	}
+	//@Test
+//	public void getCountTest()throws Exception{
+//		long count = noticeDAO.getCount();
+//		assertEquals(206L, count);
+//	
+//	}
 	
 //	@Test
 //	public void setAddTest()throws Exception{

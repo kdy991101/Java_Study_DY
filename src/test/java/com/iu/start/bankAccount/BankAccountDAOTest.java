@@ -13,7 +13,7 @@ import cou.iu.start.MyAbstractTest;
 
 public class BankAccountDAOTest extends MyAbstractTest {
 	
-	@Autowired
+	//@Autowired
 	private BankAccountDAO bankAccountDAO;
 	
 	@Test

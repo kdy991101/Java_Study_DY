@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.iu.start.util.CommentPager;
 
 @Controller
 @RequestMapping(value = "/bankbook/*")
@@ -100,13 +103,56 @@ public class BankBookController {
 		return mv;
 	}
 	//=======================Comment
+//	@PostMapping(value = "commentAdd")
+//	public ModelAndView commentAdd(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+//		//리턴 타입이 void일 때에는 commentAdd.jsp를 찾으러 감
+//		ModelAndView mv = new ModelAndView();
+//		
+//		int result = bankBookService.setCommentAdd(bankBookCommentDTO);
+//		
+//		mv.addObject("result", result);
+//		mv.setViewName("common/ajaxResult");
+//		
+//		return mv;
+//	}
+	//=========================json에 담아 보내기
 	@PostMapping(value = "commentAdd")
-	public void commentAdd(BankBookCommentDTO bankBookCommentDTO)throws Exception{
-		System.out.println("commentAdd실행");
+	@ResponseBody
+	//ResponseBody=>리턴하는 데이터를 body(응답)에 담음
+	public String commentAdd(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+		//리턴 타입이 void일 때에는 commentAdd.jsp를 찾으러 감
+		ModelAndView mv = new ModelAndView();
+		
 		int result = bankBookService.setCommentAdd(bankBookCommentDTO);
+		//{}
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		
+		return jsonResult;
+	}
+	
+	//1.jsp에 출력하고 결과물을 응답으로 전송
+//	@GetMapping(value = "commentList")
+//	public ModelAndView getCommentList(CommentPager commentPager) throws Exception{
+//		ModelAndView mv = new ModelAndView();
+//		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
+//		System.out.println(ar.size());
+//		mv.addObject("commentList", ar);
+//		mv.setViewName("common/commentList");
+//		return mv;
+//	}
+	//2.json
+	@GetMapping(value = "commentList")
+	@ResponseBody
+	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception{
+		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
+		System.out.println(ar.size());
+		//json은 여러개의 묶음을 배열로 표시한다, [{key, value}]
+		//DTO == {}
+		//num=1 == {"num":1, "bookNum":123, "writer":"name"}과 같음
+		//[{"num":1, "bookNum":123, "writer":"name"}, {"num":1, "bookNum":123, "writer":"name"}, {"num":1, "bookNum":123, "writer":"name"}]
+		//""잘 챙기기
 		
 		
-		
-		
+		return ar;
 	}
 }
