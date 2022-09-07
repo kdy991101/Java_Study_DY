@@ -67,10 +67,11 @@ function getCommentList(){
             
             let result = document.createElement("table");
             let resultAttr = document.createAttribute("class");
-            resultAttr.value = "table";
+            resultAttr.value = "table table-striped";
+            console.log(resultAttr.value);
             result.setAttributeNode(resultAttr);
             //<table class = "table table-striped"></table>
-            
+            commentList.innerHTML="";
             for(let i=0; i<ar.length; i++){
 
                 let tr= document.createElement("tr");//<tr></tr>
