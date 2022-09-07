@@ -131,6 +131,10 @@ public class BankBookController {
 	}
 	
 	//1.jsp에 출력하고 결과물을 응답으로 전송
+	//우리가 알고있는 방식
+	//jsp 로 보내서 table태그를 직접 만드는 것
+	//후에 응답의 결과로 보내줌
+	//vs코드 reponseText로 들어감
 //	@GetMapping(value = "commentList")
 //	public ModelAndView getCommentList(CommentPager commentPager) throws Exception{
 //		ModelAndView mv = new ModelAndView();

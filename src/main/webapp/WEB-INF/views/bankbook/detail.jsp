@@ -71,10 +71,14 @@
 		</div>
 
 		<!-- comment List -->
-		<div id="commentList">
-			
+		<div>
+			<table class="table table-striped" id="commentList">
 
+			</table>
+			
+			
 		</div>
+		<button id="more" class="btn btn-danger">더보기</button>
 
 		
 
