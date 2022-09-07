@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.iu.start.util.CommentPager;
 
+import oracle.net.aso.b;
+
 @Service
 public class BankBookService {
 	
@@ -46,8 +48,17 @@ public class BankBookService {
 	
 	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager)throws Exception{
 		commentPager.getRowNum();
+		Long totlaCount = bankBookCommentDAO.getCommentListTotalCount(commentPager);
+		commentPager.makePage(totlaCount);
 		return bankBookCommentDAO.getCommnetList(commentPager);
 	}
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+		return bankBookCommentDAO.setCommentDelete(bankBookCommentDTO);
+	}
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO)throws Exception {
+		return bankBookCommentDAO.setCommentUpdate(bankBookCommentDAO);
+	}
+	
 	}
 
 

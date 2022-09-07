@@ -1,13 +1,17 @@
-const btn = document.querySelector("#btn");
+// const btn = document.querySelector("#btn");
 const contents = document.querySelector("#contents");
 const writer = document.querySelector("#writer");
 const commentList = document.querySelector("#commentList");
 const more = document.querySelector("#more");
 
-getCommentList();
+//page번호 담는 변수
+let page = 1;
+
+//bookNum을 담을 변수
+const bookNum = btn.getAttribute("data-bookNum")
+getCommentList(page, bookNum);
 
 btn.addEventListener("click", function(){
-    let bookNum = btn.getAttribute("data-bookNum");
     let wv = writer.value;
     let cv = contents.value;
 
@@ -39,10 +43,11 @@ btn.addEventListener("click", function(){
                 //     commentList.children[0].remove;
                 // }//이렇게 되면 tr태그만 없어짐...?
                 for(let i=0; i<commentList.children.length;){
-                    commentList.children[0].remove;
+                    commentList.children[0].remove();
                 }
+                page=1;
 
-                getCommentList();
+                getCommentList(page, bookNum);//댓글이 등록되면 무조건 위(최신)에있어야 하기 떄문에 1
             }else{
                 alert("댓글 등록 실패");
             }
@@ -52,12 +57,12 @@ btn.addEventListener("click", function(){
 
 })//clicunck이벤트
 
-function getCommentList(){
+function getCommentList(p, bn){
     //1.xmlhttpRequest
     const xhttp = new XMLHttpRequest();
 
     //2.메서드 url준비
-    xhttp.open("GET", "./commentList?page=1&bookNum=" + btn.getAttribute("data-bookNum"));
+    xhttp.open("GET", "./commentList?page="+p+"&bookNum=" + bn);
 
     //3. 요청 전송
     xhttp.send();
@@ -72,7 +77,7 @@ function getCommentList(){
 
             //2.json결과물에 사용
             //json 오브젝트타입으로 변경해줘야 함
-            let ar = JSON.parse(xhttp.responseText.trim());
+            let result = JSON.parse(xhttp.responseText.trim());
             
             // let result = document.createElement("table");
             // let resultAttr = document.createAttribute("class");
@@ -81,6 +86,9 @@ function getCommentList(){
             // result.setAttributeNode(resultAttr);
             // //<table class = "table table-striped"></table>
             // // commentList.innerHTML="";
+
+            let pager = result.pager;
+            let ar = result.list;
 
             for(let i=0; i<ar.length; i++){
 
@@ -98,9 +106,38 @@ function getCommentList(){
                 tdText = document.createTextNode(ar[i].regDate);
                 td.appendChild(tdText);
                 tr.appendChild(td);
+
+                td = document.createElement("td");
+                tdText = document.createTextNode("수정");
+                let tdAttr = document.createAttribute("class");
+                tdAttr.value="update";
+                td.setAttributeNode(tdAttr);
+                tdAttr = document.createAttribute("data-comment-num");
+                tdAttr.value=ar[i].num;
+                td.setAttributeNode(tdAttr);
+                td.appendChild(tdText);
+                tr.appendChild(td);
+
+                td = document.createElement("td");
+                tdText = document.createTextNode("삭제");
+                tdAttr = document.createAttribute("class");
+                tdAttr.value = "delete";
+                td.setAttributeNode(tdAttr);
+                tdAttr = document.createAttribute("data-comment-num");
+                tdAttr.value=ar[i].num;
+                td.setAttributeNode(tdAttr)
+                td.appendChild(tdText);
+                tr.appendChild(td);
+
   
                 commentList.append(tr);
                 //append=추가
+
+                if(page >= pager.totalPage){
+                    more.classList.add("disabled");
+                }else{
+                    more.classList.remove("disabled");
+                }
 
             }
 
@@ -132,13 +169,79 @@ function getCommentList(){
     })
 };
 //-------------더보기-------------------
-let page = 1;
+
 
 more.addEventListener("click", function(){
     //more를 클릭하면 page번호를 보내야 함
     page++; //page=page+1;
-    
+    console.log(page);
+    console.log(bookNum);
+
+    getCommentList(page, bookNum);
+
 });
+
+//=====================delete, update================================
+commentList.addEventListener("click", function(event){
+    console.log(event.target);
+    //===================update=============================
+    
+    if(event.target.className == "update"){
+        // let check = window.confirm("수정 하고싶어??");
+
+        // let contents = event.target.previousSibling.previousSibling.previousSibling;
+        // console.log(contents);
+        // let v = contents.innerHTML;
+        // contents.innerHTML = "<textarea>"+v+"</textarea>";
+
+        document.querySelector("#up").click();//이벤트 강제 발생시킴
+
+        
+    }
+
+
+   //===================delete=============================
+    if(event.target.className=="delete"){
+        let check = window.confirm("삭제하시겠습니까?");
+        if(check){
+            let num = event.target.getAttribute("data-comment-num");
+            console.log("Num : ",num);
+
+            //1.XMLFTTPRequest생성
+            const xhttp = new XMLHttpRequest();
+
+            //2.요청 정보(url,메서드)
+            xhttp.open("POST", "./commentDelete");
+
+            //3. header정보 encType
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            //4. 요청을 보내는데 파라미터와 함꼐 
+            xhttp.send("num="+num);
+
+            //5.응답 처리
+            xhttp.onreadystatechange=function(){
+                if(xhttp.readyState==4&&xhttp.status==200){
+                    let result = xhttp.responseText.trim();
+                        if(result==1){
+                            alert("삭제 성공");
+                            page=1;
+                            getCommentList(page, bookNum);
+                            for(let i=0; i<commentList.children.length;){
+                                commentList.children[0].remove();
+                            }
+                        }else{
+                            alert("삭제 실패");
+                        }
+                }
+            }
+
+        }
+    }
+    
+
+})
+
 
 
 

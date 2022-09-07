@@ -96,6 +96,20 @@ public class CommentPager {
    private Long page;
    private Long perPage;
    
+   private Long totlaPage;
+   
+   //전체page갯수를 계산할 거임
+   public void makePage(Long totalCount) {
+	   //전체 글의 갯수가 필요함-Long totalCount
+	   //totalCount가 20이면 페이지 수는 4가 나와야 함
+	   //perPage가 5
+	   this.totlaPage = totalCount/this.getPerPage();
+	   if(totalCount%this.getPerPage() != 0) {
+		   this.totlaPage++;
+		   //전체 글 갯수를 5로 나눠서 0이 아니면 페이지1을 추가시켜라,
+	   }
+   }
+   
    //startRow
    public void getRowNum()throws Exception{
       this.startRow = (this.getPage()-1)*this.getPerPage()+1;
@@ -146,5 +160,14 @@ public class CommentPager {
    public void setPerPage(Long perPage) {
       this.perPage = perPage;
    }
+
+public Long getTotlaPage() {
+	return totlaPage;
+}
+
+public void setTotlaPage(Long totlaPage) {
+	this.totlaPage = totlaPage;
+}
+   
 
 }

@@ -23,15 +23,6 @@
 		<version>2.13.4</version>
 	</dependency>
 	
-	
-		<!-- Test 시 servlet context 에러 해결 -->
-		<dependency>
-         	<groupId>javax.servlet</groupId>
-         	<artifactId>javax.servlet-api</artifactId>
-         	<version>3.1.0</version>
-         	<scope>test</scope>
-      	</dependency>
-	
 	      <!-- commons-fileupload -->
       <dependency>
           <groupId>commons-fileupload</groupId>

@@ -1,7 +1,9 @@
 package com.iu.start.bankBook;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.iu.start.util.CommentPager;
 
 @Controller
@@ -147,7 +150,7 @@ public class BankBookController {
 	//2.json
 	@GetMapping(value = "commentList")
 	@ResponseBody
-	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception{
+	public Map<String, Object> getCommentList(CommentPager commentPager) throws Exception{
 		List<BankBookCommentDTO> ar = bankBookService.getCommentList(commentPager);
 		System.out.println(ar.size());
 		//json은 여러개의 묶음을 배열로 표시한다, [{key, value}]
@@ -155,8 +158,26 @@ public class BankBookController {
 		//num=1 == {"num":1, "bookNum":123, "writer":"name"}과 같음
 		//[{"num":1, "bookNum":123, "writer":"name"}, {"num":1, "bookNum":123, "writer":"name"}, {"num":1, "bookNum":123, "writer":"name"}]
 		//""잘 챙기기
+		Map<String, Object> map = new HashMap<String, Object>(); 
+				//map은 인터페이스임
+		map.put("list", ar);
+		map.put("pager", commentPager);
 		
+		return map;
+	}
+	@PostMapping(value = "commentDelete")
+	@ResponseBody
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO)throws Exception{
 		
-		return ar;
+		int result = bankBookService.setCommentDelete(bankBookCommentDTO);
+		
+		return result;
+	}
+	
+	@PostMapping("commentUpdate")
+	@ResponseBody
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+		int result = bankBookService.setCommentDelete(bankBookCommentDTO);
+		return result;
 	}
 }
