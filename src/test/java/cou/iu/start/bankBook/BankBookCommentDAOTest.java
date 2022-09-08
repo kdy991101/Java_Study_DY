@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.servlet.annotation.WebFilter;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +46,16 @@ public class BankBookCommentDAOTest extends MyAbstractTest{
 	 
 	 List<BankBookCommentDTO> ar = bankBookCommentDAO.getCommnetList(commentPager);
 	 assertNotEquals(0, ar.size());
+ }
+ 
+ public void getCommentUpdateTest()throws Exception{
+	 BankBookCommentDTO bankBookCommentDTO = new BankBookCommentDTO();
+	 bankBookCommentDTO.setNum(1042L);
+	 bankBookCommentDTO.setContents("수정");
+	 bankBookCommentDTO.setWriter("성공");
+	 
+	 
+	 
  }
 	
 	

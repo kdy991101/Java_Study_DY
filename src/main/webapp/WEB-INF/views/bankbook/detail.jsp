@@ -99,22 +99,23 @@
 						</div>
 						<div class="modal-body">
 							<form>
+								<!-- 히든에 번호를 넣어줌 -->
+								<input type="hidden" id="num">
 								<div class="mb-3">
 									<label for="recipient-name" class="col-form-label">writer:</label>
-									<input type="text" class="form-control" id="recipient-name">
+									<input type="text" class="form-control" id="updateWriter">
 								</div>
 								
 								<div class="mb-3">
 									<label for="message-text" class="col-form-label">contents:</label>
-									<textarea class="form-control" id="message-text"></textarea>
+									<textarea class="form-control" id="updateContents"></textarea>
 								</div>
 							</form>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Send
-								message</button>
+							<button type="button" class="btn btn-primary" id="update" data-bs-dismiss="modal">Sendmessage</button>
 						</div>
 					</div>
 				</div>

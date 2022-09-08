@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.start.bankMembers.BankMembersDTO;
 import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.impl.BoardService;
@@ -63,10 +64,16 @@ public class NoticeController {
 	
 	//글 작성
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
-	public String setAdd()throws Exception{
+	public String setAdd(HttpSession session)throws Exception{
 		System.out.println("getAdd실행");
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		if(bankMembersDTO != null) {
+			
+			return "board/add";
+		}else {
+			return "redirect:../member/login.iu";
+		}
 		
-		return "board/add";
 	}
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session)throws Exception{

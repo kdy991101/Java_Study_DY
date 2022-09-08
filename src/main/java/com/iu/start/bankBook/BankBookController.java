@@ -176,6 +176,8 @@ public class BankBookController {
 	
 	@PostMapping("commentUpdate")
 	@ResponseBody
+	//모르면 void
+	//파라미터로 num,contents넘어옴 그것을 DTO에 담음
 	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO)throws Exception{
 		int result = bankBookService.setCommentDelete(bankBookCommentDTO);
 		return result;

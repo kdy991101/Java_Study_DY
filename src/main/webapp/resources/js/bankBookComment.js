@@ -44,7 +44,7 @@ btn.addEventListener("click", function(){
                 // }//이렇게 되면 tr태그만 없어짐...?
                 for(let i=0; i<commentList.children.length;){
                     commentList.children[0].remove();
-                }
+                }//내용을 비워줌
                 page=1;
 
                 getCommentList(page, bookNum);//댓글이 등록되면 무조건 위(최신)에있어야 하기 떄문에 1
@@ -90,6 +90,8 @@ function getCommentList(p, bn){
             let pager = result.pager;
             let ar = result.list;
 
+            let tb = document.createElement("tbody");
+
             for(let i=0; i<ar.length; i++){
 
                 let tr= document.createElement("tr");//<tr></tr>
@@ -99,13 +101,28 @@ function getCommentList(p, bn){
                 td.appendChild(tdText);
                 tr.appendChild(td);
 
+                td = document.createElement("td");
                 tdText = document.createTextNode(ar[i].writer);
                 td.appendChild(tdText);
                 tr.appendChild(td);
 
+                td = document.createElement("td");
+
+                // let date = new Date(ar[i].regDate);
+                // console.log(date);
+                // let year = date.getFullYear();
+                // let month = date.getMonth()+1;
+                // let d = date.getDate();
+                // tdText = document.createTextNode(year+"-"+month+"-"+d);
+                // console.log(year);
+                // console.log(month);
+                // console.log(d);
+
                 tdText = document.createTextNode(ar[i].regDate);
+                
                 td.appendChild(tdText);
                 tr.appendChild(td);
+                
 
                 td = document.createElement("td");
                 tdText = document.createTextNode("수정");
@@ -130,7 +147,7 @@ function getCommentList(p, bn){
                 tr.appendChild(td);
 
   
-                commentList.append(tr);
+                tb.appendChild(tr);
                 //append=추가
 
                 if(page >= pager.totalPage){
@@ -138,6 +155,7 @@ function getCommentList(p, bn){
                 }else{
                     more.classList.remove("disabled");
                 }
+                commentList.append(tb);
 
             }
 
@@ -194,7 +212,17 @@ commentList.addEventListener("click", function(event){
         // let v = contents.innerHTML;
         // contents.innerHTML = "<textarea>"+v+"</textarea>";
 
+        let contents = event.target.previousSibling.previousSibling.previousSibling.innerHTML;
+        let writer = event.target.previousSibling.previousSibling.innerHTML;
+        let num = event.target.getAttribute("data-comment-num");
+        console.log(contents);
+        document.querySelector("#updateContents").value=contents;
+        document.querySelector("#updateWriter").value=writer;
+        document.querySelector("#num").value=num;
+
         document.querySelector("#up").click();//이벤트 강제 발생시킴
+        //강제로 실행시킬 때 target은 수정임
+        
 
         
     }
@@ -240,6 +268,48 @@ commentList.addEventListener("click", function(event){
     }
     
 
+});
+
+//=======================modal update버튼
+const update = document.querySelector("#update");
+update.addEventListener("click", function(){
+    //modal에서 num, ccontents
+    let num = document.getElementById("num").value;
+    let contents = document.querySelector("#updateContents").value;
+
+    //--ajax--
+    //1.xhttpRequest생성
+    const xhttp = new XMLHttpRequest();
+
+    //2. request  정보
+    xhttp.open("POST", "commentUpdate");
+
+    //3. header 저보(enctype)
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    //4. 요청 실행
+    xhttp.send("num="+num+"&contents="+contents);
+
+    //5. 응답 처리
+    xhttp.onreadystatechange = function(){
+        if(xhttp.readyState==4&&xhttp.status==200){
+            let result = xhttp.responseText.trim();
+
+            if(result>0){
+                alert("수정 완료");
+                
+                for(let i=0; i<commentList.children.length;){
+                    commentList.children[0].remove();
+                }
+
+                page=1;
+
+                getCommentList(page, bookNum);
+            }else{
+                alert("수정 실패");
+            }
+        }
+    }
 })
 
 
