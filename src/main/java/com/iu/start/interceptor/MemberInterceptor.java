@@ -5,9 +5,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.iu.start.bankMembers.BankMembersDAO;
+import com.iu.start.bankMembers.BankMembersDTO;
+
 public class MemberInterceptor extends HandlerInterceptorAdapter {
+	
+	@Autowired
+	private BankMembersDAO bankMembersDAO;
 
 	@Override
 	//컨트롤러 들어가기 전 확인하려고 함 
@@ -18,6 +25,8 @@ public class MemberInterceptor extends HandlerInterceptorAdapter {
 		//로그인 유무를 판별하기 위해 request를 꺼냄
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("member");
+		
+		System.out.println(bankMembersDAO);
 		
 		if(obj != null) {
 			System.out.println("로그인");

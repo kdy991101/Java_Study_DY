@@ -13,6 +13,8 @@ public class BankMembersDTO {
 	private String phone;
 	private List<BankAccountDTO> bankAccountDTOs;
 	private BankMembersFileDTO bankMembersFileDTO;
+	private List<RoleDTO> roleDTOs;
+	//회원 한명이 여러개 가지고있다~~
 	
 	
 	public List<BankAccountDTO> getBankAccountDTOs() {
@@ -56,6 +58,12 @@ public class BankMembersDTO {
 	}
 	public void setBankMembersFileDTO(BankMembersFileDTO bankMembersFileDTO) {
 		this.bankMembersFileDTO = bankMembersFileDTO;
+	}
+	public List<RoleDTO> getRoleDTOs() {
+		return roleDTOs;
+	}
+	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+		this.roleDTOs = roleDTOs;
 	}
 
 }

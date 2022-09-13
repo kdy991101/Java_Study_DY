@@ -23,18 +23,18 @@
 	
 	<!-- interceptor -->
 	<!-- interceptor 객체 생성 -->
-	<beans:bean class="com.iu.start.interceptor.TestInterceptor" id="testInterceptor"></beans:bean>
+<!-- 	<beans:bean class="com.iu.start.interceptor.TestInterceptor" id="testInterceptor"></beans:bean> -->
 	
 	<!-- interceptor 맵핑 -->
-	<interceptors>
+	<!-- <interceptors>
 		<interceptor>
-			<!--url정보  -->
-			<mapping path="/**"/> <!-- /로 시작하는 모든 것  -->
+			url정보 
+			<mapping path="/**"/> /로 시작하는 모든 것 
 			
 			<beans:ref bean="testInterceptor"/>
 			
 		</interceptor>
-		
+		s
 		<interceptor>
 			<mapping path="/qna/update.iu"/>
 			<mapping path="/notice/update.iu"/>
@@ -42,7 +42,7 @@
 			<beans:bean class="com.iu.start.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
 		</interceptor>
 		
-		<!-- <interceptor>
+		 <interceptor>
 			<mapping path="/qna/*"/>
 			<mapping path="/member/myPage.iu"/>
 			
@@ -50,7 +50,50 @@
 			<exclude-mapping path="/qna/list.iu"/>
 			
 			<beans:bean class="com.iu.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
-		</interceptor> -->
+		</interceptor>
+		
+	</interceptors> -->
+	
+	<!-- interceptor역할을 하는 객체를 만듬 -->
+	<beans:bean class="com.iu.start.interceptor.AdminCheckinterceptor" id="adminCheckinterceptor"></beans:bean>
+	<beans:bean class="com.iu.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
+	
+	<!-- mapping -->
+	<interceptors>
+	
+		<interceptor>
+			<mapping path="/notice/**"/>
+			<exclude-mapping path="/notice/list.iu"/>
+			<exclude-mapping path="/notice/detail.iu"/>
+			
+			<beans:ref bean="memberInterceptor"/>
+		</interceptor>
+	
+		<interceptor>
+			<mapping path="/notice/**"/>
+			<exclude-mapping path="/notice/list.iu"/>
+			<exclude-mapping path="/notice/detail.iu"/>
+			
+			<beans:ref bean="adminCheckinterceptor"/>
+		</interceptor>
+		
+		
+		<interceptor>
+			<mapping path="/qna/**"/>
+			<exclude-mapping path="/qna/list.iu"/>
+			<exclude-mapping path="/qna/detail.iu"/>
+			
+			<beans:ref bean="memberInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/**"/>
+			<exclude-mapping path="/qna/list.iu"/>
+			<exclude-mapping path="/qna/detail.iu"/>
+			
+			<beans:ref bean="adminCheckinterceptor"/>
+		</interceptor>
+		
 		
 	</interceptors>
 	

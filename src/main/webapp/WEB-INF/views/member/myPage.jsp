@@ -58,9 +58,18 @@
 		</tbody>
 	</table>
 	<div class="row">
-		<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">
-				
+		<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">		
 	</div>
+	
+	<div>
+		<c:forEach items="${member.roleDTOs}" var="roleDTO">
+			<div>${roleDTO.roleNum}, ${roleDTO.roleName}</div>
+		</c:forEach>
+		
+		<h3>당신은 ${member.roleDTOs.get(0).roleName} 등급 입니다.</h3>
+		<h3>당신은 ${member.roleDTOs["0"].roleName} 등급 입니다.</h3>
+	</div>
+	
 </section>
 </body>
 </html>

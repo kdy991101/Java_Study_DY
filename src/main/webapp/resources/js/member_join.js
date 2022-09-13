@@ -32,6 +32,12 @@ let phoneCheck=false;
         //idCheck=false;
         inputUserNameResult.innerHTML="ID는 최소 2글자 이상 이어야 합니다."
     }
+    // if(username.value.){
+    //    idCheck=true;
+    //    inputUserNameResult.innerHTML="사용할 수 있는 아이디입니다.";
+    // }else{
+    //     inputUserNameResult.innerHTML="이미 사용중인 아이디입니다."
+    // }
     });
 
     //pw길이 Check

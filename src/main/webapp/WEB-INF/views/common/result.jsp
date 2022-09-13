@@ -8,11 +8,12 @@
 </head>
 <body>
  <script type="text/javascript">
- let result = ${result};
- let message = '${message}';	
+//let result = ${result}; 
+//alert(result); 
  
+ let message = '${message}';	
  alert(message);
- alert(result);
+ 
  location.href="${url}";
  </script>
 </body>

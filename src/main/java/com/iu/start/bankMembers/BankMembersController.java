@@ -66,7 +66,7 @@ public class BankMembersController {
 	//post
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)//post방식만 받겠다~
 	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, HttpSession session) throws Exception {
-		System.out.println("post Join실행");
+			System.out.println("post Join실행");
 			System.out.println("파일명" + photo);//파일 명이 옴
 			System.out.println("업로드시 파일명" + photo.getOriginalFilename());//업로드할 떄 이름
 			System.out.println("업로드할 때 파라미터 이름" + photo.getName());
