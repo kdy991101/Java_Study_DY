@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -49,6 +50,7 @@ public class NoticeController {
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("board/list");
+		
 		return mv;
 	}
 	
@@ -126,6 +128,24 @@ public class NoticeController {
 			
 		}
 		mv.setViewName("redirect:./list.iu");
+		return mv;
+	}
+	
+	//exception을 조종하겠다~
+	//null exception을 잡고싶으면=>@ExceptionHandler(NullPointerException.class) 
+	@ExceptionHandler(NullPointerException.class)
+	public ModelAndView exceptionTest() {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("errors/error_404");
+		return mv;
+	}
+	
+	@ExceptionHandler(Exception.class)
+	public ModelAndView exceptionTest2(Exception e) {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("errors/error_404");
 		return mv;
 	}
 	
