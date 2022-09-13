@@ -13,7 +13,7 @@ public class FrontErrorController {
 	public ModelAndView error400()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("400");
-		mv.setViewName("errors/error_404");
+		mv.setViewName("/errors/error_404");
 		return mv;	
 	}
 	
@@ -21,8 +21,15 @@ public class FrontErrorController {
 	public ModelAndView error500()throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("500");
-		mv.setViewName("errors/error_404");
+		mv.setViewName("/errors/error_404");
 		return mv;
 	}
 	
+	@GetMapping("error404")
+	public ModelAndView error404()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("404");
+		mv.setViewName("/errors/error_404");
+		return mv;
+	}
 }

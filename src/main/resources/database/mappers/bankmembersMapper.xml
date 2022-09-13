@@ -29,6 +29,7 @@
 	<result column="NAME" property="name"/>	
 	
 	<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+	<!-- ofType="RoleDTO"=>제네릭 -->
 		<id column="ROLENUM" property="roleNum"/>
 		<result column="ROLENAME" property="roleName"/>
 	</collection>
