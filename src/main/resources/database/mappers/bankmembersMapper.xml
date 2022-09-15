@@ -67,7 +67,7 @@ SELECT * FROM MEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME 
 			<result column="NAME" property="name"/>
 			<result column="EMAIL" property="email"/>
 			<result column="PHONE" property="phone"/>
-			
+															<!-- ofType 제네릭을 뭏어보는 것 -->
 			<association property="bankMembersFileDTO" javaType="BankMembersFileDTO">
 				<id column="FILENUM" property="fileNum"/>
 				<result column="FILENAME" property="fileName"/>
@@ -79,13 +79,7 @@ SELECT * FROM MEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME 
 				
 				<association property="bankBookDTO" javaType="BankBookDTO"><!-- 하나만 받는것..? -->
 					<result column="BOOKNAME" property="bookName"/>
-				</association>
-				
-			
-			
+				</association>			
 			</collection>
-		<!-- ofType 제네릭을 뭏어보는 것 -->
 		</resultMap>
-
-
 </mapper>
