@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.start.file.FileDTO;
+
 @Component
 public class FileManager {
 	
@@ -18,6 +20,20 @@ public class FileManager {
 	//xml파일에 빈,,,,,..... 
 	
 	//servletcontext 어너케이션, 매개변수 둘중 하나를 이용
+	
+	public boolean deleteFile(ServletContext servletContext, String path, FileDTO fileDTO)throws Exception{
+		//경로,파일 필요
+		String realPath = servletContext.getRealPath(path);
+		System.out.println(realPath);
+		
+		File file = new File(realPath, fileDTO.getFileName());
+		
+		
+		return file.delete();
+	}
+	
+	
+	
 	//save
 	public String saveFile(String path, ServletContext servletContext, MultipartFile multipartFile)throws Exception{
 	//하드디스크에 파일을 저장하는 코드를 여기에 저장
