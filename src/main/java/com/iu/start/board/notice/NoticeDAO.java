@@ -20,6 +20,18 @@ public class NoticeDAO implements BoardDAO{
 	private final String NAMESPACE = "com.iu.start.board.notice.NoticeDAO.";
 	
 	@Override
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"getFileDetail", boardFileDTO);
+	}
+	
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(NAMESPACE+"setFileDelete", boardFileDTO);
+	}
+	
+	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(NAMESPACE+"getList",pager);

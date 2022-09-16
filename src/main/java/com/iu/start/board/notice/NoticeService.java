@@ -25,12 +25,25 @@ public class NoticeService implements BoardService {
 
 	@Autowired
 	private NoticeDAO noticeDAO;
-	
+
 //	@Autowired
 //	private ServletContext servletContext;
-	
+
 	@Autowired
 	private FileManager fileManager;
+
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext) throws Exception {
+		// TODO Auto-generated method stub
+		boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);// 삭제하기 전에 꺼내와야 함
+		int result = noticeDAO.setFileDelete(boardFileDTO);
+		String path = "resources/upload/notice";
+		if (result > 0) {
+			fileManager.deleteFile(servletContext, path, boardFileDTO);
+
+		}
+		return result;
+	}
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -52,12 +65,12 @@ public class NoticeService implements BoardService {
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
 		// TODO Auto-generated method stub
 		int result = noticeDAO.setAdd(boardDTO);
-		
-		String path="resources/upload/notice";
-		
-		for(MultipartFile multipartFile:files) {
-			if(multipartFile.isEmpty()) {
-			continue;	
+
+		String path = "resources/upload/notice";
+
+		for (MultipartFile multipartFile : files) {
+			if (multipartFile.isEmpty()) {
+				continue;
 			}
 			String fileName = fileManager.saveFile(path, servletContext, multipartFile);
 			BoardFileDTO boardFileDTO = new BoardFileDTO();
@@ -65,9 +78,9 @@ public class NoticeService implements BoardService {
 			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
 			boardFileDTO.setNum(boardDTO.getNum());
 			noticeDAO.setAddFile(boardFileDTO);
-			
+
 		}
-		
+
 //
 //		// 저장할 폴더의 실제경로를 반환
 //		// realpath=>실제 경로
@@ -106,21 +119,38 @@ public class NoticeService implements BoardService {
 //
 //			f.transferTo(file);//하드디스크에 저장 
 
-			// f.transferTo(new File(file, fileName));가능
+		// f.transferTo(new File(file, fileName));가능
 //			BoardFileDTO boardFileDTO = new BoardFileDTO();
 //			boardFileDTO.setFileName(fileName);//저장된 파일명
 //			boardFileDTO.setOriName(f.getOriginalFilename());//올릴 때의 실제 이름
 //			boardFileDTO.setNum(boardDTO.getNum());//setNum-어느글에 대한 첨부파일이다라는걸 연결하기위해 얘가 참조한 글의 번호가 필요하기 때문에 
 //			noticeDAO.setAddFile(boardFileDTO);
 
-		
 		return result;
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
 		// TODO Auto-generated method stub
-		return noticeDAO.setUpdate(boardDTO);
+		String path = "resources/upload/notice";
+		int result =  noticeDAO.setUpdate(boardDTO);
+		
+		if(result<1) {
+			return result;
+		}
+		
+		for (MultipartFile multipartFile : files) {
+			if (multipartFile.isEmpty()) {
+				continue;
+			}
+			String fileName = fileManager.saveFile(path, servletContext, multipartFile);
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
+			noticeDAO.setAddFile(boardFileDTO);
+		}
+		return result;
 	}
 
 	@Override

@@ -10,15 +10,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.bankMembers.BankMembersDTO;
 import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
 import com.iu.start.util.Pager;
 
@@ -34,6 +37,13 @@ public class NoticeController {
 		return "notice";
 	}
 	//컨트롤러의 메서드의 리턴은 결론적으로 mv로 됨
+	
+	@PostMapping(value = "fileDelete")
+	@ResponseBody
+	public int setFileDelete(BoardFileDTO boardFileDTO, HttpSession session)throws Exception{
+		int result = noticeService.setFileDelete(boardFileDTO, session.getServletContext());
+		return result;
+	}
 	
 	//글 목록
 	@RequestMapping(value = "list.iu", method=RequestMethod.GET)
@@ -107,10 +117,10 @@ public class NoticeController {
 		return mv;
 	}
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
-	public String setUpdate(BoardDTO boardDTO)throws Exception{
+	public String setUpdate(BoardDTO boardDTO, MultipartFile [] files, HttpSession session)throws Exception{
 		System.out.println("postUpdate실행");
 		
-		int result = noticeService.setUpdate(boardDTO);
+		int result = noticeService.setUpdate(boardDTO, files, session.getServletContext());
 		return "redirect:./detail.iu?num="+boardDTO.getNum();//파라미터를 넣어서 보내줘야 함
 	}
 	
