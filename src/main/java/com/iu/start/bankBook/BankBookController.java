@@ -76,7 +76,7 @@ public class BankBookController {
 		bankBookDTO = bankBookService.getDetail(bankBookDTO);
 		model.addAttribute("detail", bankBookDTO);
 	}
-	@RequestMapping(value = "update", method = RequestMethod.POST)
+	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
 	public ModelAndView update(BankBookDTO bankBookDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = bankBookService.setUpdate(bankBookDTO);
