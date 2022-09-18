@@ -71,8 +71,6 @@ public class BankBookController {
 	}
 	@RequestMapping(value = "update.iu", method = RequestMethod.GET)
 	public void update(BankBookDTO bankBookDTO, Model model) throws Exception{
-		System.out.println("업데이트 실행");
-		System.out.println(bankBookDTO.getBookNum());
 		bankBookDTO = bankBookService.getDetail(bankBookDTO);
 		model.addAttribute("detail", bankBookDTO);
 	}
