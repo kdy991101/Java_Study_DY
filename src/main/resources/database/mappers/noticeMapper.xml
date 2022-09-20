@@ -86,6 +86,6 @@
     <insert id="setAddFile" parameterType="BoardFileDTO">
 	   INSERT  INTO NOTICEFILE (FILENUM, FILENAME, ORINAME, NUM)
 	    VALUES(FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
-     </insert>
+    </insert>
 	
 </mapper>
