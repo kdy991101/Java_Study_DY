@@ -54,7 +54,7 @@
 	</c:if> 
 
 	<!-- comment시작 -->
-	<div class="row">
+	<div class="row more">
 
 		<div class="mb-3">
 			<label for="writer" class="form-label">USERNAME</label>

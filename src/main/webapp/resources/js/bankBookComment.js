@@ -4,9 +4,10 @@ const writer = document.querySelector("#writer");
 const commentList = document.querySelector("#commentList");
 const more = document.querySelector("#more");
 
+
 //page번호 담는 변수
 let page = 1;
-
+alert
 //bookNum을 담을 변수
 const bookNum = btn.getAttribute("data-bookNum")
 getCommentList(page, bookNum);
