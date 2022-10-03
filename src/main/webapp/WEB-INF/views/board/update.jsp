@@ -59,7 +59,6 @@
 			
 			<div id="addFiles">
 				<button type="button" id="fileAdd">파일추가</button>
-	
 			</div>
 			<div class="mb-3">
 				<input type="submit" class="btn btn-secondary" value="등록" name="글등록">
